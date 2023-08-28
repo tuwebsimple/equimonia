@@ -1,0 +1,1124 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<!-- <hr class="my-12 mx-10 border-gray-200 dark:border-gray-700"> -->
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Equimonía</title>
+<link href="https://media.discordapp.net/attachments/1114023780071768084/1144450191857029251/clean_logo.png?width=904&amp;height=904" rel="icon"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/css/all.min.css" rel="stylesheet"/>
+<link href="https://unpkg.com/aos@next/dist/aos.css" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<!-- CSS Styles -->
+<style>
+		/* @keyframes zoom {
+			0% {
+				transform: scale(1);
+			}
+			100% {
+				transform: scale(1.4);
+			}
+		} */
+
+		.zoom-out {
+			animation: zoomout 2s;
+			transform-origin: top center;
+			/* Establece el origen de la transformación en la parte superior del centro */
+		}
+
+		@keyframes zoomout {
+			from {
+				transform: scale(1);
+			}
+
+			to {
+				transform: scale(1.5);
+				/* Puedes ajustar este valor según el nivel de zoom-out deseado */
+			}
+		}
+
+
+
+
+		html,
+		body {
+			max-width: 100%;
+			overflow-x: hidden;
+			-webkit-font-smoothing: antialiased;
+			-moz-osx-font-smoothing: grayscale;
+			color: #6d7c90;
+			font-family: Lato, sans-serif;
+			font-size: 17px;
+			line-height: 1.75em;
+			/* padding: 0; */
+			text-align: left;
+		}
+
+
+		.hero {
+			background-size: cover;
+			background-position: center;
+			position: relative;
+			overflow: hidden;
+		}
+
+		/* trainsition con efecto en el nav bar */
+		.navbar-transition {
+			transition: background-color 0.6s ease-in-out, color 0.6s ease-in-out;
+		}
+
+		.carousel {
+			position: relative;
+		}
+
+		.carousel-inner {
+			position: relative;
+			width: 100%;
+			overflow: hidden;
+		}
+
+		.carousel-open:checked+.carousel-item {
+			position: static;
+			opacity: 1;
+			transition: opacity 0.4s ease;
+		}
+
+		.carousel-item {
+			position: absolute;
+			opacity: 0;
+			width: 100%;
+			transition: opacity 0.4s ease;
+			text-align: center;
+			white-space: nowrap;
+		}
+
+		.carousel-control {
+			background: rgba(0, 0, 0, 0.28);
+			width: 7%;
+			height: 100%;
+			z-index: 10;
+			cursor: pointer;
+			transition: all 0.1s ease;
+		}
+
+		.carousel-control:hover {
+			background: rgba(0, 0, 0, 0.5);
+			transition: all 0.1s ease;
+		}
+
+		.carousel-control.prev {
+			left: 0;
+		}
+
+		.carousel-control.next {
+			right: 0;
+		}
+
+		.carousel-control.prev:hover,
+		.carousel-control.next:hover {
+			color: #ffffff;
+			text-decoration: none;
+			opacity: 1;
+			filter: alpha(opacity=100);
+		}
+
+		.carousel-indicators {
+			list-style: none;
+			padding: 0;
+			position: absolute;
+			bottom: 2%;
+			left: 50%;
+			margin-left: -19px;
+			text-align: center;
+		}
+
+		.carousel-indicators li {
+			display: inline-block;
+			margin: 0 5px;
+		}
+
+		.carousel-bullet {
+			color: #333;
+			font-size: 20px;
+			cursor: pointer;
+			transition: color 0.1s ease;
+		}
+
+		.carousel-bullet:hover {
+			color: #666;
+			transition: color 0.1s ease;
+		}
+
+		.testimonial-text {
+			max-width: 60%;
+		}
+
+		@media (max-width: 768px) {
+			.carousel-item {
+				flex-direction: column;
+			}
+
+			.testimonial-text {
+				max-width: 100%;
+				margin-top: 1rem;
+			}
+		}
+
+		@keyframes slide {
+
+			0%,
+			33.33% {
+				opacity: 1;
+			}
+
+			33.34%,
+			100% {
+				opacity: 0;
+			}
+		}
+
+		.testimonial-container {
+			animation: slide 21s infinite;
+		}
+
+		.testimonial-container:nth-child(2) {
+			animation-delay: 7s;
+		}
+
+		.testimonial-container:nth-child(3) {
+			animation-delay: 14s;
+		}
+
+		.overlay {
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			background: rgba(52, 52, 52, 0.3);
+			/* ajusta esto a tu preferencia */
+			z-index: 1;
+			/* debe ser inferior al z-index de los elementos que quieres mantener al frente */
+		}
+
+		.front-elements {
+			position: relative;
+			z-index: 2;
+		}
+
+		#hero-background-1,
+		#hero-background-2 {
+			animation: zoom 30s infinite alternate ease-in-out;
+			background-size: cover;
+			background-repeat: no-repeat;
+			transition: opacity 2s ease-in-out;
+		}
+
+		/* Imagen de sección Acerca de misión vision y objetivos */
+		@media screen and (min-width: 640px) {
+			.bg-image {
+				background: url('https://cdn.discordapp.com/attachments/1114023780071768084/1122168384738566204/tuwebsimple444_Tech_business_building_shot_with_Nikon_D850_and__533bf0e1-243d-41b2-92cd-7dfaded09b8b.png') no-repeat center fixed;
+				-webkit-background-size: cover;
+				-moz-background-size: cover;
+				-o-background-size: cover;
+				background-size: cover;
+			}
+		}
+
+		@media screen and (max-width: 639px) {
+			.bg-image {
+				background: url('https://cdn.discordapp.com/attachments/1114023780071768084/1122168384738566204/tuwebsimple444_Tech_business_building_shot_with_Nikon_D850_and__533bf0e1-243d-41b2-92cd-7dfaded09b8b.png') no-repeat center top fixed;
+				-webkit-background-size: cover;
+				-moz-background-size: 100% auto;
+				-o-background-size: 100% auto;
+				background-size: cover;
+			}
+		}
+
+		.bg-img::before {
+			content: "";
+			position: absolute;
+			top: 0;
+			right: 0;
+			bottom: 0;
+			left: 0;
+			background-image: inherit;
+			background-size: cover;
+			background-position: bottom;
+			background-repeat: no-repeat;
+			transition: filter .3s;
+		}
+
+		.bg-img:hover::before {
+			filter: blur(5px);
+		}
+
+		.glass {
+			background: rgba(255, 255, 255, 0.15);
+			backdrop-filter: blur(30px);
+			border-radius: 10px;
+			padding: 20px;
+			border: .5px solid rgba(255, 255, 255, 0.18);
+		}
+
+		.glass-location {
+			position: absolute;
+			top: 20px;
+			/* Ajusta el valor según sea necesario */
+			left: 20px;
+			/* Ajusta el valor según sea necesario */
+			background: rgba(0, 0, 0, 0.2);
+			backdrop-filter: blur(20px);
+			padding: 20px;
+			border-radius: 10px;
+			border: .5px solid rgb(255, 255, 255);
+		}
+
+		.glass-descripcion {
+			background: rgba(255, 255, 255, 0.15);
+			backdrop-filter: blur(50px);
+			border-radius: 10px;
+			padding: 20px;
+			border: .5px solid rgba(0, 0, 0, 0.18);
+		}
+
+		.glass-productos {
+			background: rgba(255, 255, 255, 0.15);
+			backdrop-filter: blur(30px);
+			border-radius: 10px;
+			padding: 20px;
+			border: .5px solid rgba(255, 255, 255, 0.18);
+		}
+
+		.skew-left {
+			transform: rotateY(5deg) rotateX(1deg) skew(5deg, 1deg) scale(1.2) translateX(8%)
+		}
+
+		.skew-right {
+			transform: rotateY(-5deg) rotateX(1deg) skew(-5deg, 1deg) scale(1.2) translateX(-8%);
+		}
+
+
+		/* Estilo para desktop */
+		.skew-left-descripcion {
+			transform: rotateY(5deg) rotateX(1deg) skew(5deg, 1deg) scale(1.2) translateX(8%);
+		}
+		/* Estilo para móviles */
+		@media screen and (max-width: 640px) {
+			.skew-left-descripcion {
+				transform: rotateY(5deg) rotateX(1deg) skew(5deg, 1deg) scale(1.3) translateX(8%);
+			}
+		}
+
+
+		/* Ajusta la escala para las pantallas móviles */
+		@media (max-width: 480px) {
+			.skew-right {
+				transform: rotateY(-5deg) rotateX(1deg) skew(-5deg, 1deg) scale(0.9) translateX(-8%);
+			}
+
+		}
+
+		.perspective-right {
+			margin-bottom: 16%;
+			perspective: 600px;
+			perspective-origin: 100%
+		}
+
+		.perspective-right-insta-profile {
+			margin-bottom: 16%;
+			perspective: 800px;
+			perspective-origin: 100%
+		}
+
+		.skew-right-insta-profile {
+			transform: rotateY(-5deg) rotateX(1deg) skew(-1deg, 1deg) scale(1) translateX(-8%);
+		}
+
+		
+
+		.perspective-left {
+			margin-bottom: 10%;
+			margin-top: 5px;
+			margin-left: -30px; /* Reset para dispositivos pequeños */
+			perspective: 600px;
+			perspective-origin: -100%;
+			
+			
+		}
+
+		/* Media query para pantallas de escritorio en adelante */
+		@media (min-width: 768px) {
+			.perspective-left {
+				margin-left: 10px;
+				margin-bottom: 5px;
+			}
+		}
+
+
+
+		.perspective-left iframe {
+			border-radius: 10px;
+			/* Cambia este valor según el nivel de redondeo que desees */
+		}
+
+		.skew-left-post {
+			transform: rotateY(5deg) rotateX(1deg) skew(5deg, 1deg) scale(1.2) translateX(8%);
+		}
+
+		.perspective-left-post {
+			margin-bottom: 0%;
+			margin-right: 0%;
+			margin-left: 0%;
+			perspective: 600px;
+			perspective-origin: -100%
+		}
+
+		.perspective-left-post iframe {
+			border-radius: 15px;
+			/* Cambia este valor según el nivel de redondeo que desees */
+		}
+
+
+		.clean-card {
+			background-color: #fff;
+			box-shadow: 0 8px 60px 0 rgba(103, 151, 255, .11), 0 12px 90px 0 rgba(103, 151, 255, .11);
+			margin-top: 24px;
+			padding: 0;
+			transition: all .3s cubic-bezier(.4, 0, .2, 1);
+			border-radius: 8px;
+			flex-direction: row-reverse;
+			display: flex;
+			flex-wrap: wrap;
+			margin: 4% -2.5%;
+			max-width: 105%;
+			position: relative;
+			flex: 1;
+		}
+
+		.cta-background {
+			background-size: cover;
+		}
+
+		@media (min-width: 481px) {
+			.cta-background {
+				background-size: contain;
+			}
+		}
+
+		#productos {
+			position: relative;
+			overflow: hidden;
+			/* asegura que el desenfoque no afecte a otros elementos */
+		}
+
+		#productos::before {
+			content: "";
+			background-image: url('https://cdn.discordapp.com/attachments/1114023780071768084/1127036161739718737/tuwebsimple444_Abstract_gradient_gold_displaywhite_clean_backgr_e2de1dba-6299-4b56-8ebe-c77e30f5f756.png');
+			background-size: cover;
+			background-attachment: fixed;
+			filter: blur(10px);
+			position: absolute;
+			top: -10px;
+			/* compensación para el desenfoque */
+			bottom: -10px;
+			/* compensación para el desenfoque */
+			left: -10px;
+			/* compensación para el desenfoque */
+			right: -10px;
+			/* compensación para el desenfoque */
+			z-index: -1;
+		}
+
+		#card-1:hover #nombre-producto-1,
+		#card-1:hover #product-description-1 {
+			color: black;
+		}
+
+		#card-2:hover #nombre-producto-2,
+		#card-2:hover #product-description-2 {
+			color: black;
+		}
+
+		#card-3:hover #nombre-producto-3,
+		#card-3:hover #product-description-3 {
+			color: black;
+		}
+
+		/* Este será el estilo por defecto (móvil) */
+		#separador-1 {
+			background-attachment: scroll;
+		}
+
+		/* Cuando la pantalla tenga al menos 768px de ancho, se aplicará este estilo (escritorio) */
+		@media (min-width: 768px) {
+			#separador-1 {
+				background-attachment: fixed;
+			}
+		}
+
+		#separador-2 {
+			background-attachment: scroll;
+		}
+
+		/* Cuando la pantalla tenga al menos 768px de ancho, se aplicará este estilo (escritorio) */
+		@media (min-width: 768px) {
+			#separador-2 {
+				background-attachment: fixed;
+			}
+		}
+
+		/* Cuando la pantalla tenga al menos 768px de ancho, la posición del background será el 300% */
+		@media (min-width: 768px) {
+			#cta-imagen {
+				background-position: 300%;
+				background-attachment: fixed;
+			}
+		}
+
+		/* Por defecto, la posición del background será al centro */
+		#cta-imagen {
+			background-attachment: scroll;
+		}
+
+		.floating {
+			animation-name: floating;
+			animation-duration: 6s;
+			animation-iteration-count: infinite;
+			animation-timing-function: ease-in-out;
+		}
+
+		@keyframes floating {
+			0% {
+				transform: translate(0, 0px);
+			}
+
+			50% {
+				transform: translate(6px, 8px);
+			}
+
+			100% {
+				transform: translate(0, -3px);
+			}
+		}
+
+		/* Esconder el triangulo del acorden (Sección Instagram) */
+		details summary {
+		list-style: none;
+		}
+		details summary::-webkit-details-marker {
+		display: none;
+		}
+
+		.fa-chevron-up {
+			transition: transform 0.5s ease;
+		}
+
+		details[open] .fa-chevron-up {
+			transform: rotate(180deg);
+		}
+		
+		/* Estilo por defecto para dispositivos más pequeños como móviles */
+		#dynamicIframe {
+			width: 100%;
+			height: auto;
+			aspect-ratio: 16/9;  /* Ajusta si es necesario según la relación de aspecto de tu video */
+		}
+
+		/* Estilo para dispositivos más grandes, como desktops */
+		@media (min-width: 768px) {  /* Este es un punto de interrupción común para tablets y desktops */
+			#dynamicIframe {
+				width: 560px;  /* Ancho para desktop */
+				height: 316px;  /* Altura para desktop */
+			}
+		}
+
+
+
+
+
+	</style>
+<!-- Script Animación Hero - Imagenes de fondo -->
+<script id="imagenes-hero">
+		function changeBackgroundImage(element1, element2, images, index) {
+			if (index % 2 === 0) {
+				element1.style.backgroundImage = `url('${images[index]}')`;
+				element1.style.opacity = '1';
+				element2.style.opacity = '0';
+				element1.classList.add('zoom-out');
+				element2.classList.remove('zoom-out');
+			} else {
+				element2.style.backgroundImage = `url('${images[index]}')`;
+				element1.style.opacity = '0';
+				element2.style.opacity = '1';
+				element2.classList.add('zoom-out');
+				element1.classList.remove('zoom-out');
+			}
+			setTimeout(() => {
+				changeBackgroundImage(element1, element2, images, (index + 1) % images.length);
+			}, 5000);
+		}
+
+
+		window.addEventListener('DOMContentLoaded', () => {
+			const heroBackground1 = document.getElementById('hero-background-1');
+			const heroBackground2 = document.getElementById('hero-background-2');
+			const images = ["https://media.discordapp.net/attachments/1114023780071768084/1144450312355196999/tuwebsimple444_horse_round_pen_with_stairs_uphill_site_shot_wit_3b15048c-9faa-47a3-9a9c-6026ec21093f.png?width=2078&height=890", "https://cdn.discordapp.com/attachments/1114023780071768084/1143190741884084304/tuwebsimple444_realistic_photograph_of_a_family_with_horses_loo_5c76d86a-f981-468d-93f7-dc5254590f48.png"];
+
+			// Iniciar el carrusel solo si la ventana es mayor que 768px
+			changeBackgroundImage(heroBackground1, heroBackground2, images, 0);
+
+		});
+
+	</script>
+<!-- Script Animación Nav Bar - Efecto Transparente-->
+<script>
+		window.addEventListener('DOMContentLoaded', (event) => {
+			const navbar = document.getElementById('navbar');
+			const logoText = document.getElementById('logo-text');
+			const button = document.getElementById('location-button');
+
+			window.addEventListener('scroll', () => {
+				if (window.scrollY > 10) {
+					navbar.classList.remove('bg-transparent', 'text-white');
+					navbar.classList.add('bg-white', 'text-gray-800');
+					// logoText.classList.remove('text-white');
+					// logoText.classList.add('text-gray-800');
+					// button.classList.remove('bg-white', 'text-gray-600');
+					// button.classList.add('bg-gray-600', 'text-white');
+				} else {
+					navbar.classList.remove('bg-white', 'text-gray-800');
+					navbar.classList.add('bg-transparent', 'text-white');
+					// logoText.classList.remove('text-gray-800');
+					// logoText.classList.add('text-white');
+					// button.classList.remove('bg-gray-600', 'text-white');
+					// button.classList.add('bg-white', 'text-gray-600');
+				}
+			});
+		});
+	</script>
+</head>
+<body class="bg-white font-sans">
+<!-- Barra de navegación -->
+<nav class="fixed w-full top-0 z-30 navbar-transition bg-transparent text-white" id="navbar">
+<div class="container mx-auto px-4 py-2 flex items-center justify-between">
+<div class="flex items-center">
+<a class="text-sm mx-4 md:text-xxl font-bold" data-aos="fade-right" data-aos-delay="1000" href="index.html">Inicio</a>
+<a class="text-sm mx-4 md:text-xxl font-bold" data-aos="fade-right" data-aos-delay="1200" href="#productos" id="navbar-tipo">Reflexiones y Consejos</a>
+<a class="text-sm mx-4 md:text-xxl font-bold" data-aos="fade-right" data-aos-delay="1300" href="#ubicacion">Ubicación</a>
+</div>
+<a href="index.html#contacto" rel="noopener noreferrer" target="_blank">
+<img alt="Icon" class="w-10 h-10 ml-4" loading="lazy" src="https://cdn-icons-png.flaticon.com/512/2504/2504957.png"/>
+</a>
+</div>
+</nav>
+<!-- Sección Hero-->
+<section class="relative hero py-20 md:py-5 text-white" id="hero">
+<div class="absolute z-20 overlay"></div> <!-- Added overlay div -->
+<div class="absolute inset-0 z-0 bg-bottom" id="hero-background-1"></div>
+<!-- Div de la imagen de fondo 1 -->
+<div class="absolute inset-0 z-0 bg-bottom" id="hero-background-2"></div>
+<!-- Div de la imagen de fondo 2 -->
+<div class="relative z-20">
+<div class="container mx-auto px-2 py-0 md:py-10">
+<div class="grid grid-cols-1 items-center justify-items-center">
+<div class="py-0 front-elements">
+<div class="flex justify-center">
+<div class="md:mt--2 flex justify-center items-center bg-white rounded drop-shadow-xl w-full h-full md:w-1/2 bg-opacity-0" data-aos="fade-down" id="card-logo">
+<img alt="logo" class="aos-init aos-animate w-3/4 h-full md:w-3/4" data-aos="fade-up" fetchpriority="high" id="logo-image" src="https://media.discordapp.net/attachments/1114023780071768084/1144450191857029251/clean_logo.png?width=904&amp;height=904"/>
+</div>
+</div>
+<h1 class="text-5xl md:text-8xl text-center font-bold drop-shadow-xl" data-aos="fade-up" id="nombre-empresa"></h1>
+<div class="text-center py-10 px-1 md:px-0">
+<h1 class="text-2xl font-bold text-white md:text-4xl drop-shadow-xl" data-aos="fade-up" data-aos-delay="800" data-aos-offset="-100" id="slogan">Descubre tu potencial a través de la conexión con caballos</h1>
+<div class="flex justify-center mt-4 space-x-0 md:space-x-2">
+<a class="text-right" href="#contacto">
+<!-- <svg aria-hidden="true" class="w-5 h-5 mr-2 -ml-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M3 1a1 1 0 000 2h1.22l.305 1.222a.997.997 0 00.01.042l1.358 5.43-.893.892C3.74 11.846 4.632 14 6.414 14H15a1 1 0 000-2H6.414l1-1H14a1 1 0 00.894-.553l3-6A1 1 0 0017 3H6.28l-.31-1.243A1 1 0 005 1H3zM16 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zM6.5 18a1.5 1.5 0 100-3 1.5 1.5 0 000 3z"></path></svg> -->
+<button class="inline-flex items-center px-4 md:px-5 py-2 text-sm md:text-m font-medium text-white capitalize transition-colors duration-300 transform bg-blue-600 rounded-md hover:scale-105 hover:bg-blue-500 focus:outline-none focus:bg-blue-500 drop-shadow-xl" data-aos="fade-up" data-aos-delay="1000" data-aos-offset="-100" id="hero-boton-1"><!-- SVG icon -->
+<svg class="w-5 h-5 mr-2 -ml-1" fill="#FFFFFF" height="30px" id="icono-boton-hero" style="enable-background:new 0 0 512 512;" version="1.1" viewbox="0 0 30 30" width="30px" x="0px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" y="0px"> <path d="M 9.9980469 3 C 6.1390469 3 3 6.1419531 3 10.001953 L 3 20.001953 C 3 23.860953 6.1419531 27 10.001953 27 L 20.001953 27 C 23.860953 27 27 23.858047 27 19.998047 L 27 9.9980469 C 27 6.1390469 23.858047 3 19.998047 3 L 9.9980469 3 z M 22 7 C 22.552 7 23 7.448 23 8 C 23 8.552 22.552 9 22 9 C 21.448 9 21 8.552 21 8 C 21 7.448 21.448 7 22 7 z M 15 9 C 18.309 9 21 11.691 21 15 C 21 18.309 18.309 21 15 21 C 11.691 21 9 18.309 9 15 C 9 11.691 11.691 9 15 9 z M 15 11 A 4 4 0 0 0 11 15 A 4 4 0 0 0 15 19 A 4 4 0 0 0 19 15 A 4 4 0 0 0 15 11 z"></path></svg>Instagram</button>
+</a>
+<a class="text-left" href="#contenedor-marcas">
+<button class="inline-flex items-center px-4 md:px-5 py-2 text-sm md:text-m font-medium text-white capitalize transition-colors duration-300 transform bg-white-600 rounded-md hover:text-gray-700 hover:bg-blue-50 focus:outline-none focus:bg-blue-500 drop-shadow-xl" data-aos="fade-up" data-aos-delay="1200" data-aos-offset="-100" id="hero-boton-2">Empieza tu viaje</button>
+</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Sección Descripción -->
+<section class="bg-white py-10">
+<div class="max-w-6xl px-6 py-10 mx-auto">
+<main class="relative z-20 w-full md:flex md:items-center xl:mt-12">
+<div class="absolute w-full h-full md:h-80 bg-gradient-to-r from-amber-700 to-amber-500 -z-10 h-80 rounded-2xl shadow-lg" id="color-descripcion"></div>
+<div class="w-full p-6 md:flex md:items-center rounded-2xl md:p-0 md:justify-evenly md:flex-row md:space-x-6">
+<div class="w-full h-[200px] md:h-auto md:w-3/4 perspective-left floating flex-3" data-aos="fade-up" data-aos-delay="200">
+<div class="skew-left-descripcion card-full-bleed hover:scale-105">
+<iframe allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share" allowfullscreen="true" class="perspective-left-description floating" frameborder="0" id="dynamicIframe" scrolling="no" src="https://www.facebook.com/plugins/video.php?height=316&amp;href=https%3A%2F%2Fwww.facebook.com%2FEqui.monia%2Fvideos%2F222946206522250%2F&amp;show_text=false&amp;width=560&amp;t=0" style="border:none;overflow:hidden"></iframe>
+</div>
+</div>
+<div class="mt-0 md:mx-6 md:w-2/4 flex-1">
+<div>
+<p class="text-6xl font-bold tracking-tight text-zinc-50" data-aos="fade-right" data-aos-delay="300" id="titulo-empresa">Equimonía</p>
+<p class="text-xl font-bold text-zinc-200" data-aos="fade-right" data-aos-delay="600" id="subtitulo-empresa">Nuestra Misión</p>
+</div>
+<hr class="mt-4" data-aos="fade-right" data-aos-delay="600" style="border-color: whitesmoke; width: 400px;"/>
+<p class="mt-4 text-lg leading-relaxed text-zinc-50 md:text-xl" data-aos="fade-right" data-aos-delay="800" id="descripcion-empresa">Equimonía se dedica a ofrecer técnicas asistidas con caballos, aprovechando su nobleza y transparencia para mejorar el autoconocimiento y el manejo emocional.</p>
+</div>
+</div>
+</main>
+</div>
+</section>
+<!-- Sección 3 Tarjetas -->
+<section class="relative bg-gray-50 py-10" id="productos">
+<div class="absolute inset-0">
+<img class="object-cover h-full w-full" id="imagen-fondo-productos" src="https://media.discordapp.net/attachments/1114023780071768084/1145853445442654279/tuwebsimple444_horse_head_7267bf7c-8894-43f1-aa4a-39809182e0d2.png?width=933&amp;height=523"/>
+</div>
+<div class="relative container px-5 mx-auto">
+<!-- Tu contenido aquí -->
+<!-- <h1 class="text-4xl md:text-6xl drop-shadow-2xl font-bold text-center text-gray-50 capitalize drop-shadow-xl" data-aos="fade-down" data-aos-delay="0">
+			<span id="titulo-productos" class="text-transparent bg-clip-text bg-gradient-to-t to-gray-50 from-slate-300">Integración con Whatsapp</span></h1>
+			-->
+<h1 class="text-4xl md:text-6xl md:pb-5 font-extrabold text-center text-gray-700 capitalize drop-shadow-xl" data-aos="fade-up" data-aos-delay="0" data-aos-offset="-50" id="titulo-productos">Nuestros Programas</h1>
+<div class="grid grid-cols-1 gap-4 md:gap-0 md:grid-cols-2 xl:grid-cols-3">
+<div class="glass flex flex-col items-center m-8 space-y-3 text-center hover:shadow-lg hover:shadow-black/30" data-aos="fade-up" data-aos-delay="1000" id="card-1">
+<h1 class="text-3xl text-gray-50 font-bold capitalize py-1 h-20" id="nombre-producto-1">Sesión Individual</h1>
+<img alt="product 1" class="w-100 p-2 rounded-xl mt-5 hover:scale-100" id="imagen-producto" src="https://media.discordapp.net/attachments/1114023780071768084/1145854368055316700/271931973_457689072503060_2179355220738249346_n.png?width=523&amp;height=523"/>
+<p class="text-slate-50 font-sans text-xl" id="product-description-1">Terapia individualizada aprovechando la conexión con un caballo.</p>
+</div>
+<div class="glass flex flex-col items-center m-8 space-y-3 text-center hover:shadow-lg hover:shadow-black/30" data-aos="fade-up" data-aos-delay="2000" id="card-1">
+<h1 class="text-3xl text-gray-50 font-bold capitalize py-1 h-20" id="nombre-producto-1">Grupo de Apoyo</h1>
+<img alt="product 2" class="w-100 p-2 rounded-xl mt-5 hover:scale-100" id="imagen-producto" src="https://media.discordapp.net/attachments/1114023780071768084/1145854759484530758/165204820_268738424731460_2092879763055343073_n.png?width=523&amp;height=523"/>
+<p class="text-slate-50 font-sans text-xl" id="product-description-1">Encuentra apoyo y aprende en un ambiente colectivo.</p>
+</div>
+<div class="glass flex flex-col items-center m-8 space-y-3 text-center hover:shadow-lg hover:shadow-black/30" data-aos="fade-up" data-aos-delay="3000" id="card-1">
+<h1 class="text-3xl text-gray-50 font-bold capitalize py-1 h-20" id="nombre-producto-1">Taller del Merecimiento</h1>
+<img alt="product 3" class="w-100 p-2 rounded-xl mt-5 hover:scale-100" id="imagen-producto" src="https://media.discordapp.net/attachments/1114023780071768084/1145854975235334254/307686120_528988735899045_6495744752661673623_n.png?width=697&amp;height=523"/>
+<p class="text-slate-50 font-sans text-xl" id="product-description-1">Alíneate con lo que sientes y descubre lo que realmente mereces.</p>
+</div>
+<!-- <div class="flex flex-col items-center p-5 space-y-3 text-center hover:bg-white bg-stone-900 bg-opacity-25 hover:bg-opacity-50 backdrop-blur-lg rounded-xl shadow-none hover:shadow-lg hover:shadow-black/30"
+				data-aos="fade-up" data-aos-delay="600" id="card-1">
+				<h1 class="text-3xl text-gray-50 font-bold capitalize py-1 h-20" id="nombre-producto-1">
+					Chocolate Oscuro con alto % de Cacao</h1>
+				<img alt="product 1" class="w-100 p-2 rounded-xl mt-5 hover:scale-100" id="imagen-producto"
+					src="https://replicate.delivery/pbxt/PtXfBnx3MW0VLivmpOM5SZvx1EetafHIj0tBk69cE27fFheHC/output.png"
+						/>
+				<p class="text-slate-50 font-sans text-xl" id="product-description-1">
+					texto</p>
+			</div>
+			<div class="flex flex-col items-center p-5 space-y-3 text-center hover:bg-white bg-stone-900 bg-opacity-25 hover:bg-opacity-50 backdrop-blur-lg rounded-xl shadow-none hover:shadow-lg hover:shadow-black/30"
+				data-aos="fade-up" data-aos-delay="900" id="card-2" onmouseout="resetText(this)"
+				onmouseover="changeText(this)">
+				<h1 class="text-3xl text-gray-50 font-bold capitalize py-1 h-20" id="nombre-producto-2">Chocolate Blanco
+				</h1>
+				<img alt="product 2" class="w-100 p-2 rounded-xl mt-5 hover:scale-100" id="imagen-producto"
+					src="https://replicate.delivery/pbxt/zaOx2WDtPf1aUqERHl9kVbO5LrfgeH1EpfkckbOqtf5Uev3PE/output.png"
+					loading="lazy" />
+				<p class="text-slate-50 font-sans text-xl" id="product-description-2">
+					texto</p>
+			</div>
+			<div class="flex flex-col items-center p-5 space-y-3 text-center hover:bg-white bg-stone-900 bg-opacity-25 hover:bg-opacity-50 backdrop-blur-lg rounded-xl shadow-none hover:shadow-lg hover:shadow-black/30"
+				data-aos="fade-up" data-aos-delay="1200" id="card-3" onmouseout="resetText(this)"
+				onmouseover="changeText(this)">
+				<h1 class="text-3xl text-gray-50 font-bold capitalize py-1 h-20" id="nombre-producto-3">Chocolate
+					Artesanal</h1>
+				<img alt="product 3" class="w-100 p-2 rounded-xl mt-5 hover:scale-100" id="imagen-producto"
+					src="https://replicate.delivery/pbxt/c3HBrAbhfWSjUKl7MpekvROS6G8yZ59XfdGz19XBfCeVIC9HC/output.png"
+					loading="lazy" />
+				<p class="text-slate-50 font-sans text-xl" id="product-description-3">
+					texto</p>
+			</div> -->
+</div>
+</div>
+</section>
+<!-- Sección Instagram -->
+<section class="overflow-hidden" id="section-instagram">
+<div class="items-center w-full px-5 py-24 mx-auto md:px-10 max-w-7xl">
+<h1 class="text-4xl md:text-6xl md:pb-10 font-medium text-center text-gray-800 capitalize drop-shadow-xl" data-aos="fade-up" data-aos-delay="0" data-aos-offset="-50" id="instagram-title">Conoce Nuestra Cuenta de Instagram</h1>
+<div class="grid grid-cols-1 md:grid-cols-2">
+<div class="lg:pr-10 md:pr-5">
+<!-- Contenedor principal usando Flexbox -->
+<div class="flex items-start">
+<!-- Contenedor de la imagen -->
+<div class="w-1/3 mr-4">
+<img alt="icon" data-aos="fade-right" data-aos-delay="100" src="https://cdn-icons-png.flaticon.com/512/2504/2504918.png"/>
+</div>
+<!-- Contenedor de los encabezados -->
+<div>
+<h2 class="text-2xl md:text-4xl font-medium text-black" data-aos="fade-down" data-aos-delay="100" id="h-video-1">El poder de Equimonía</h2>
+<h2 class="text-2xl md:text-2xl font-medium text-gray-600" data-aos="fade-down" data-aos-delay="100" id="h2-video-1">Deja que los caballos te guíen en tu viaje de sanación y crecimiento.</h2>
+</div>
+</div>
+<div id="acordeon-instagram">
+
+<details class="relative mb-3 mt-5" data-aos="fade-down" data-aos-delay="100" data-aos-offset="-100">
+<summary class="px-5 py-3 text-xl cursor-pointer border-b border-slate-100">Nuestros Propietarios
+                <i class="fa fa-chevron-up absolute right-0 pt-1 text-base"></i>
+</summary>
+<div class="bg-white px-5 py-3 text-md font-light">
+<p>@angelinadelag y @paupliego son dos apasionados de la psicología y los animales que fundaron Equimonía con el propósito de compartir los beneficios terapéuticos de los caballos.</p>
+</div>
+</details>
+<details class="relative mb-3 mt-5" data-aos="fade-down" data-aos-delay="600" data-aos-offset="-100">
+<summary class="px-5 py-3 text-xl cursor-pointer border-b border-slate-100">Lo que compartimos
+                <i class="fa fa-chevron-up absolute right-0 pt-1 text-base"></i>
+</summary>
+<div class="bg-white px-5 py-3 text-md font-light">
+<p>Desde testimonios hasta eventos y promociones, nuestras publicaciones ofrecen una visión profunda de la terapia ecuestre. Descubre fotos y videos que capturan momentos transformadores y la magia de la conexión con los equinos.</p>
+</div>
+</details>
+<details class="relative mb-3 mt-5" data-aos="fade-down" data-aos-delay="1100" data-aos-offset="-100">
+<summary class="px-5 py-3 text-xl cursor-pointer border-b border-slate-100">Nuestros Valores
+                <i class="fa fa-chevron-up absolute right-0 pt-1 text-base"></i>
+</summary>
+<div class="bg-white px-5 py-3 text-md font-light">
+<p>La base de Equimonía reside en el respeto, la confianza, la empatía y la equidad. Estos valores guían nuestro enfoque terapéutico y nuestra interacción tanto con los caballos como con nuestros clientes.</p>
+</div>
+</details>
+<details class="relative mb-3 mt-5" data-aos="fade-down" data-aos-delay="1600" data-aos-offset="-100">
+<summary class="px-5 py-3 text-xl cursor-pointer border-b border-slate-100">Una experiencia personalizada
+                <i class="fa fa-chevron-up absolute right-0 pt-1 text-base"></i>
+</summary>
+<div class="bg-white px-5 py-3 text-md font-light">
+<p>Cada persona es única, y así es cómo vemos nuestra terapia. Ofrecemos experiencias adaptadas a las necesidades y objetivos individuales, asegurando que cada sesión sea significativa y efectiva.</p>
+</div>
+</details>
+<details class="relative mb-3 mt-5" data-aos="fade-down" data-aos-delay="2100" data-aos-offset="-100">
+<summary class="px-5 py-3 text-xl cursor-pointer border-b border-slate-100">Beneficios Tangibles
+                <i class="fa fa-chevron-up absolute right-0 pt-1 text-base"></i>
+</summary>
+<div class="bg-white px-5 py-3 text-md font-light">
+<p>La terapia ecuestre no solo promueve el bienestar emocional, sino que también potencia habilidades como la comunicación, el liderazgo y la autoestima. Al seguirnos, podrás ver y sentir estos beneficios en acción.</p>
+</div>
+</details>
+<details class="relative mb-3 mt-5" data-aos="fade-down" data-aos-delay="2600" data-aos-offset="-100">
+<summary class="px-5 py-3 text-xl cursor-pointer border-b border-slate-100">Participa con Nosotros
+                <i class="fa fa-chevron-up absolute right-0 pt-1 text-base"></i>
+</summary>
+<div class="bg-white px-5 py-3 text-md font-light">
+<p>Al seguir a Equimonía en Instagram, no solo te inspirarás con historias de éxito, sino que también tendrás la oportunidad de unirte a nuestros eventos exclusivos y aprovechar promociones especiales.</p>
+</div>
+</details>
+</div>
+</div>
+<div class="h-full mt-5 md:mt-2 lg:mt-0 md:pl-10" id="video-section">
+<div class="perspective-right-insta-profile floating pl-10 md:pl-0" data-aos="fade-up" data-aos-delay="1000" id="video-container">
+<video autoplay="" class="skew-right-insta-profile clean-card card-full-bleed hover:scale-105" height="250" id="video" loop="" muted="" playsinline="" width="620">
+<source data-src="Record.mov" id="video-source-instagram" src="insta.mov" type="video/mp4"/>
+</video>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Sección CTA -->
+<section class="mb-32">
+<div class="cta-background relative z-0 py-20 overflow-hidden bg-no-repeat bg-cover bg-center aos-init order-last" id="cta-imagen" style="background-image:url(https://media.discordapp.net/attachments/1114023780071768084/1142841060461121546/Screenshot_2023-08-20_at_9.21.16.png); height: 500px; background-attachment: fixed; background-position: center;">
+</div>
+<div class="relative z-50 container mx-auto px-6 md:px-10 md:pt-10 order-first">
+<div class="text-center text-gray-800">
+<div class="relative block rounded-lg shadow-lg px-2 py-12 md:py-16 md:px-12 aos-init" data-aos="fade-up" data-aos-delay="600" data-aos-offset="-50" style="margin-top: -170px; background: hsla(0, 0%, 100%, 0.7); backdrop-filter: blur(5px);">
+<h1 class="text-3xl md:text-5xl md:text-6xl xl:text-7xl font-bold tracking-tight mb-12 drop-shadow-xl" id="cta-title-1">¿Listo para un cambio?</h1>
+<h1 class="text-amber-700 -mt-10 text-3xl md:text-5xl md:text-6xl xl:text-7xl font-bold tracking-tight mb-12 drop-shadow-xl" id="cta-title-2">Únete a la familia Equimonía</h1>
+<a class="bg-blue-600 inline-block px-7 py-3 mb-2 md:mb-0 mr-0 md:mr-2 text-white font-bold text-lg md:text-md leading-snug uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-red-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-800 active:shadow-lg transition duration-150 ease-in-out bg-orange-600 inline-block px-7 py-3 mb-2 md:mb-0 mr-0 md:mr-2 text-white font-bold text-sm leading-snug uppercase rounded shadow-md hover:bg-orange-700 hover:shadow-lg focus:bg-orange-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-800 active:shadow-lg transition duration-150 ease-in-out" data-mdb-ripple="true" data-mdb-ripple-color="light" href="#contacto" id="cta-button" role="button">Empieza Ahora</a>
+</div>
+</div>
+</div>
+</section>
+<!-- Sección Diferenciadores -->
+<section class="gradient-bg py-10">
+<div class="container mx-auto px-4 py-20 text-gray-700">
+<h1 class="text-4xl md:text-6xl md:pb-10 font-medium text-center text-gray-800 capitalize drop-shadow-xl" data-aos="fade-up" data-aos-offset="-50" id="firts_section_title">Lo que nos hace únicos en Equimonía</h1>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+<div class="flex justify-center pt-5 mx-2 md:mx-10">
+<div class="h-50 w-full" data-aos="fade-up" data-aos-delay="200">
+<div autoplay="" class="card-full-bleed hover:scale-105" loop="" muted="">
+<iframe allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share" allowfullscreen="true" frameborder="0" height="552" scrolling="no" src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2FEqui.monia%2Fposts%2Fpfbid02sTGobRpkmurBXvDTPfQ8qQCBgceG6yLj1f3ZMm89cPXU4MdDcDiNmNMeqNFPwzJBl&amp;show_text=true&amp;width=500" style="border:none;overflow:hidden" width="100%"></iframe>
+</div>
+</div>
+</div>
+<!-- Diferenciadores en bullets -->
+<div class="md:mt-20 md:mt-0 content-center">
+<ul class="space-y-4" id="diferenciadores-list">
+
+<li class="flex items-start" data-aos="fade-right" data-aos-delay="600" data-aos-offset="-80">
+<i class="fas fa-check-circle mr-4 text-3xl"></i>
+<div>
+<h3 class="text-xl font-semibold mb-2">Enfoque único en emociones</h3>
+<p>Mientras que muchas terapias se centran únicamente en la mente, nosotros incorporamos el poder y la sabiduría de los caballos para ofrecer una experiencia de crecimiento personal incomparable. Nuestra técnica con caballos se centra en el manejo de emociones y en fomentar un verdadero crecimiento personal, haciendo de esta una experiencia terapéutica distintiva y enriquecedora.</p>
+</div>
+</li>
+
+<li class="flex items-start" data-aos="fade-right" data-aos-delay="750" data-aos-offset="-80">
+<i class="fas fa-check-circle mr-4 text-3xl"></i>
+<div>
+<h3 class="text-xl font-semibold mb-2">Beneficios de la terapia asistida con caballos</h3>
+<p>La terapia asistida con caballos ha sido reconocida por su alta efectividad a nivel mundial. Aprovechamos la nobleza, transparencia y temperamento de los equinos en nuestras sesiones, lo que facilita el proceso de sanación y descubrimiento personal. El vínculo entre el humano y el equino sirve como puente para revelar y trabajar aspectos profundos del ser.</p>
+</div>
+</li>
+
+<li class="flex items-start" data-aos="fade-right" data-aos-delay="900" data-aos-offset="-80">
+<i class="fas fa-check-circle mr-4 text-3xl"></i>
+<div>
+<h3 class="text-xl font-semibold mb-2">Compromiso auténtico</h3>
+<p>No solo nos dedicamos a ofrecer sesiones de terapia, sino que también estamos comprometidos con la educación y el bienestar emocional. A través de nuestra página de Facebook, compartimos consejos, reflexiones y conocimientos sobre autocuidado y cómo evitar el autosabotaje. Estos contenidos demuestran nuestra profunda experiencia y pasión por ayudar a las personas a vivir de manera más plena y consciente.</p>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+<!-- Sección Logos -->
+<section class="p-10" id="contenedor-marcas">
+<h1 class="text-4xl md:text-6xl pb-10 font-medium text-center text-gray-800 capitalize drop-shadow-xl" data-aos="fade-up" data-aos-delay="0" id="marcas-title">Marcas con las que hemos trabajado</h1>
+<div class="grid grid-cols-1 gap-8 md:grid-cols-6 lg:grid-cols-4 text-center justify-center" id="contenedor-marcas-1"><div class="flex items-center justify-center col-span-1 md:col-span-2 lg:col-span-1" data-aos="fade-up" data-aos-delay="600" data-aos-offset="-50"><a href="https://andrebestrada.github.io/carsonhats.github.io/"><img alt="logo" class="hover:scale-125, hover:opacity-50" id="marca-1" src="https://cdn-icons-png.flaticon.com/512/9563/9563630.png"/></a></div><div class="flex items-center justify-center col-span-1 md:col-span-2 lg:col-span-1" data-aos="fade-up" data-aos-delay="600" data-aos-offset="-50"><a href="https://dycmaco.com/"><img alt="logo" class="hover:scale-125, hover:opacity-50" id="marca-2" src="https://cdn-icons-png.flaticon.com/512/9563/9563630.png"/></a></div><div class="flex items-center justify-center col-span-1 md:col-span-2 lg:col-span-1" data-aos="fade-up" data-aos-delay="600" data-aos-offset="-50"><a href=""><img alt="logo" class="hover:scale-125, hover:opacity-50" id="marca-3" src="https://cdn-icons-png.flaticon.com/512/9563/9563630.png"/></a></div><div class="flex items-center justify-center col-span-1 md:col-span-2 lg:col-span-1" data-aos="fade-up" data-aos-delay="600" data-aos-offset="-50"><a href=""><img alt="logo" class="hover:scale-125, hover:opacity-50" id="marca-4" src="https://cdn-icons-png.flaticon.com/512/9563/9563630.png"/></a></div></div><hr class="my-12 mx-10 border-gray-200 dark:border-gray-700"/></section>
+<!-- Imagen Separador -->
+<section class="bg-white relative" style="height: 500px;">
+<div class="absolute inset-0 bg-cover bg-center" id="separador-1" style="background-image: url('https://scontent.fmex10-4.fna.fbcdn.net/v/t1.6435-9/196797166_312643163674319_2512118875986860441_n.jpg?_nc_cat=105&amp;ccb=1-7&amp;_nc_sid=a26aad&amp;_nc_ohc=n7ELuBIWRecAX_laFDW&amp;_nc_ht=scontent.fmex10-4.fna&amp;oh=00_AfABnSvBs998rC6hsF9K0DIV5qIVsXMOpjb2_q3DgV1e5w&amp;oe=65102163');"></div>
+</section>
+<!-- Sección 4 Bloques-->
+<section class="bg-white">
+<div class="container py-20 px-6 mx-auto">
+<h1 class="text-6xl font-medium text-center text-gray-800 capitalize drop-shadow-xl" data-aos="fade-up" data-aos-delay="0" id="categorias-title" style="scroll-margin-top:180px;">Nuestros servicios</h1>
+<div class="grid grid-cols-1 gap-8 mt-8 xl:mt-12 xl:gap-12 lg:grid-cols-2">
+<a href="proyectos.html#servicio-1">
+<div class="relative flex items-end overflow-hidden bg-cover rounded-lg h-96 bg-img" data-aos="fade-up" data-aos-delay="200" data-aos-offset="-50" id="image-categoria-1" style="background-image:url(https://media.discordapp.net/attachments/1114023780071768084/1142913864254632036/tuwebsimple444_realistic_photograph_of_a_mexican_mother_a_her_d_737eca87-c647-49fa-862f-f6ce0f213836.png?width=1096&amp;height=614);">
+<div class="relative z-10 w-full px-8 py-4 overflow-hidden rounded-b-lg backdrop-blur-lg bg-white/60 hover:bg-slate-300">
+<h2 class="md:mt-4 text-xl font-awesome text-gray-800 capitalize" id="h2-categoria-1">Terapia asistida con Caballos</h2>
+<p class="mt-2 text-m md:text-lg tracking-wide font-bold uppercase text-amber" id="p-categoria-1">Descubre la nobleza y transparencia de los caballos en el proceso de sanación.</p>
+</div>
+</div>
+</a>
+<a href="proyectos.html#servicio-2">
+<div class="relative flex items-end overflow-hidden rounded-lg h-96 bg-img" data-aos="fade-up" data-aos-delay="400" data-aos-offset="-50" id="image-categoria-2" style="background-image:url(https://media.discordapp.net/attachments/1114023780071768084/1142899902683299930/tuwebsimple444_realistic_photograph_of_a_mexican_mother_a_her_d_23a10a2a-1ff8-4e01-8857-04748886a2c3.png?width=1096&amp;height=614);">
+<div class="relative z-10 w-full px-8 py-4 overflow-hidden rounded-b-lg backdrop-blur-sm bg-white/60 hover:bg-slate-300">
+<h2 class="md:mt-4 text-xl font-awesome text-gray-800 capitalize" id="h2-categoria-2">Enfoque en Emociones</h2>
+<p class="mt-2 text-m md:text-lg tracking-wide font-bold uppercase text-amber" id="p-categoria-2">Potencia tu crecimiento personal a través de técnicas únicas.</p>
+</div>
+</div>
+</a>
+<a href="proyectos.html#servicio-3">
+<div class="relative flex items-end overflow-hidden bg-cover rounded-lg h-96 bg-img" data-aos="fade-up" data-aos-delay="600" data-aos-offset="-50" id="image-categoria-3" style="background-image:url(https://media.discordapp.net/attachments/1114023780071768084/1142890882543132772/tuwebsimple444_realistic_photograph_of_mexican_father_and_his_s_dd48e0de-ffd4-4bd2-bcb5-44cff64391cb.png?width=1096&amp;height=614);">
+<div class="relative z-10 w-full px-8 py-4 overflow-hidden rounded-b-lg backdrop-blur-sm bg-white/60 hover:bg-slate-300">
+<h2 class="md:mt-4 text-xl font-awesome text-gray-800 capitalize" id="h2-categoria-3">Autoconocimiento</h2>
+<p class="mt-2 text-m md:text-lg font-bold tracking-wide uppercase text-amber" id="p-categoria-3">Conócete a ti mismo, y mejora tu comunicación y confianza.</p>
+</div>
+</div>
+</a>
+<a href="proyectos.html#servicio-4">
+<div class="relative flex items-end overflow-hidden bg-cover rounded-lg h-96 bg-img" data-aos="fade-up" data-aos-delay="800" data-aos-offset="-50" id="image-categoria-4" style="background-image:url(https://media.discordapp.net/attachments/1114023780071768084/1142844744490303619/tuwebsimple444_photograph_of_a_woman_with_a_cowboy_hat_and_3_ho_251c9222-9cb6-4dc7-8e7b-3910879d8fca.png?width=1096&amp;height=614);">
+<div class="relative z-10 w-full px-8 py-4 overflow-hidden rounded-b-lg backdrop-blur-sm bg-white/60 hover:bg-slate-300">
+<h2 class="md:mt-4 text-xl font-awesome text-gray-800 capitalize" id="h2-categoria-4">Consejos y Reflexiones</h2>
+<p class="mt-2 text-m md:text-lg font-bold tracking-wide uppercase text-amber" id="p-categoria-4">Aprende sobre autocuidado y cómo evitar el autosabotaje.</p>
+</div>
+</div>
+</a>
+</div>
+</div>
+</section>
+<!-- Sección Acerca de nosotros -->
+<section class="relative bg-gray-50 py-60" id="acerca-de">
+<div class="absolute inset-1">
+<img class="object-cover h-full w-full" id="imagen-fondo-acerca-de" src="https://media.discordapp.net/attachments/1114023780071768084/1144129077511454840/tuwebsimple444_mexican_farm_site_shot_with_Nikon_D850_and_Nikon_ab1f5408-9248-4fa4-a100-eda5aec774a4.png?width=2078&amp;height=890"/>
+</div>
+<h1 class="text-6xl pb-10 font-extrabold text-center text-white capitalize drop-shadow-xl" data-aos="fade-down" data-aos-delay="0" id="titulo-acercade">Acerca de Equimonía</h1>
+<div class="container mx-auto px-4">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<div class="text-center glass p-6 py-10 pb-20 rounded-lg shadow-lg" data-aos="fade-up">
+<div class="text-center mb-2">
+<img alt="Misión" class="w-16 h-16 mx-auto" loading="lazy" src="https://cdn-icons-png.flaticon.com/512/1545/1545569.png"/>
+</div>
+<h3 class="text-3xl font-bold text-gray-50 mb-4 drop-shadow-xl">Misión</h3>
+<p class="text-gray-50" id="mision">Empoderar individuos a través de la conexión con caballos, facilitando su autoconocimiento y crecimiento personal.</p>
+</div>
+<div class="text-center glass p-6 py-10 pb-20 rounded-lg shadow-lg" data-aos="fade-up" data-aos-delay="1000">
+<div class="text-center mb-2">
+<img alt="Visión" class="w-16 h-16 mx-auto" loading="lazy" src="https://cdn-icons-png.flaticon.com/512/10423/10423345.png"/>
+</div>
+<h3 class="text-3xl font-bold text-white mb-4 drop-shadow-xl">Visión</h3>
+<p class="text-gray-50" id="vision">Ser líderes en terapia ecuestre y transformar vidas a través de experiencias únicas.</p>
+</div>
+<div class="text-center glass p-6 py-10 pb-20 rounded-lg shadow-lg" data-aos="fade-up" data-aos-delay="2000">
+<div class="text-center mb-2">
+<img alt="Objetivos" class="w-16 h-16 mx-auto" loading="lazy" src="https://cdn-icons-png.flaticon.com/512/10104/10104148.png"/>
+</div>
+<h3 class="text-3xl font-bold text-white mb-4 drop-shadow-xl">Objetivos</h3>
+<p class="text-gray-50" id="objetivo">Brindar herramientas y técnicas que generen un impacto positivo en la vida de las personas.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Ubicación -->
+<section class="relative py-60 px-4 text-left justify-left">
+<iframe allowfullscreen="True" class="absolute inset-0 w-full h-full" id="google-places" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps/embed/v1/place?key=AIzaSyCSMI2Hh70KP_FqVdqABZgW5mQ9iXH0LFo&amp;q=Toluca de Lerdo, Estado de México" style="border:0">
+</iframe>
+<div class="absolute z-10 top-32 left-2 md:mx-auto sm:w-full sm:px-2 container space-x-10" style="width:600px; position: absolute; top: 120px; left: -30px;">
+<div class="mx-5 text-slate-50 glass-location shadow-md sm:w-full sm:mx-2" data-aos="fade-right" style="width:500px;">
+<h2 class="text-4xl md:text-7xl font-bold m-2 drop-shadow-xl" data-aos="fade-right" data-aos-delay="400">
+					Ubicación
+				</h2>
+<div class="flex items-center space-x-2 text-xl md:text-2xl drop-shadow-xl" data-aos="fade-up" data-aos-delay="600">
+<img alt="location" class="w-10 h-10" src="https://cdn-icons-png.flaticon.com/512/684/684908.png"/>
+<p class="mb-2 font-bold" id="ubicacion-ciudad">Toluca de Lerdo, Estado de México</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Sección con imagen de separador -->
+<section class="bg-white relative" style="height: 500px;">
+<div class="absolute inset-0 bg-cover bg-center" id="separador-2" style="background-image: url('https://media.discordapp.net/attachments/1114023780071768084/1143187128315027549/tuwebsimple444_realistic_photograph_of_mother_and_her_daughter__97f769a6-e582-4351-bd53-ed2eafa27c7b.png?width=1614&amp;height=904');"></div>
+</section>
+<!-- Sección de Contacto -->
+<section class="bg-zinc-100 py-40" id="contacto">
+<div class="container mx-auto px-4">
+<div class="grid grid-cols-1 md:grid-cols-5 md:gap-8 items-center">
+<div class="flex col-span-2 pb-3 md:pb-0 text-center justify-center md:justify-end" data-aos="fade-right" data-aos-delay="100">
+<img alt="Contacto" class="w-1/4 md:w-2/5 object-cover" loading="lazy" src="https://cdn-icons-png.flaticon.com/512/5968/5968841.png"/>
+</div>
+<div class="col-span-3 text-slate-800 text-center md:text-left">
+<div>
+<h2 class="text-4xl md:text-6xl font-bold mb-4 drop-shadow-xl" data-aos="fade-up" data-aos-delay="200" id="contactanos-title">¡Envianos un mensaje!</h2>
+<p class="text-xl md:text-2xl font-semibold drop-shadow-xl" data-aos="fade-up" data-aos-delay="500" id="contacto-descripcion">Transforma tu vida con nosotros. ¡Tu crecimiento personal nos apasiona! Contáctanos ahora.</p>
+<!-- <p class="text-xl md:text-2xl pt-20 font-bold" data-aos="fade-up" data-aos-delay="2500">Construcciones y Proyectos DYCMACO</p> -->
+<p class="text-xl md:text-2xl mt-10 font-semibold drop-shadow-xl" data-aos="fade-up" data-aos-delay="900">Email:
+							<span class="font-normal" id="contacto-correo">info@equimonia.com</span>
+</p>
+<p class="text-xl md:text-2xl font-semibold drop-shadow-xl" data-aos="fade-up" data-aos-delay="1000">Teléfonos
+							de
+							oficina: <span class="font-normal" id="contacto-telefono">123-456-7890</span></p>
+</div>
+<!-- <div class="mt-50 text-center"> -->
+<div class="py-10">
+<a href="https://wa.me/7221608465?text=Hola!%20Quiero%20ponerme%20en%20contacto%20contigo!">
+<button class="py-2 px-8 bg-gradient-to-b from-slate-300 to-slate-500 hover:from-emerald-400 hover:to-emerald-600 rounded-md shadow-lg" data-aos="fade-up" data-aos-delay="1200" type="button">
+<h2 class="text-2xl md:text-2xl font-bold text-white">Whatsapp
+								</h2>
+</button>
+</a>
+</div>
+<!-- </div> -->
+</div>
+</div>
+</div>
+</section>
+<!-- Footer -->
+<footer class="bg-gray-800">
+<div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
+<nav class="flex flex-wrap justify-center">
+<a class="px-6 py-2 text-base font-medium text-white hover:text-gray-300" href="#">Inicio</a>
+<a class="px-6 py-2 text-base font-medium text-white hover:text-gray-300" href="#">Contacto</a>
+</nav>
+<div class="mt-8 flex justify-center">
+<a class="text-gray-400 hover:text-gray-300" href="#">
+<span class="sr-only">Facebook</span>
+<i class="fab fa-facebook-f"></i>
+</a>
+<a class="ml-6 text-gray-400 hover:text-gray-300" href="#">
+<span class="sr-only">Twitter</span>
+<i class="fab fa-twitter"></i>
+</a>
+<a class="ml-6 text-gray-400 hover:text-gray-300" href="#">
+<span class="sr-only">Instagram</span>
+<i class="fab fa-instagram"></i>
+</a>
+<a class="ml-6 text-gray-400 hover:text-gray-300" href="#">
+<span class="sr-only">LinkedIn</span>
+<i class="fab fa-linkedin-in"></i>
+</a>
+</div>
+<p class="mt-8 text-center text-base text-gray-400" id="footer-company">©2023 Equimonía. Todos los derechos reservados</p>
+</div>
+</footer>
+<!--Función de Carrusel-->
+<script>
+		const carouselImages = document.querySelectorAll('.carousel-img');
+		let currentImageIndex = 0;
+
+		function changeCarouselImage() {
+			carouselImages.forEach((img, index) => {
+				if (index === currentImageIndex) {
+					img.style.opacity = '1';
+				} else {
+					img.style.opacity = '0';
+				}
+			});
+			currentImageIndex++;
+			if (currentImageIndex >= carouselImages.length) {
+				currentImageIndex = 0;
+			}
+		}
+
+		changeCarouselImage();
+		setInterval(changeCarouselImage, 3000);
+	</script>
+<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<!-- Duración de animaciones Fade in de los elementos -->
+<script>
+		AOS.init({
+			duration: 1700
+		});
+	</script>
+<!-- Función de aparecer Nav Bar -->
+<script>
+		const navbar = document.getElementById('navbar');
+		const scrollButton = document.getElementById('scrollButton');
+
+		function handleScroll() {
+			if (window.scrollY > 10) {
+				navbar.classList.remove('bg-transparent', 'text-white');
+				navbar.classList.add('bg-white', 'text-gray-800', 'shadow-md');
+				// scrollButton.classList.remove('bg-white', 'text-gray-500');
+				// scrollButton.classList.add('bg-gray-600', 'text-white');
+			} else {
+				navbar.classList.remove('bg-white', 'text-gray-800', 'shadow-md');
+				navbar.classList.add('bg-transparent', 'text-white');
+				// scrollButton.classList.remove('bg-gray-600', 'text-white');
+				// scrollButton.classList.add('bg-white', 'text-gray-500');
+			}
+		}
+
+		window.addEventListener('scroll', handleScroll);
+	</script>
+<!-- Funciones para Acordeon (Seccion Instagram) -->
+<!-- <script src="node_modules/@material-tailwind/html/scripts/collapse.js"></script> -->
+<script src="https://unpkg.com/@material-tailwind/html@latest/scripts/collapse.js"></script>
+<!-- Sección Call To Action V1 -->
+<!-- <section class="py-10 px-4 text-center bg-gradient-to-r from-amber-600 to-amber-800" id="section-cta">
+		<h2 class="text-4xl text-zinc-50 font-bold mb-6" data-aos="fade-up" data-aos-offset="-50" id="cta-title">
+			¿Listo para deleitar tus sentidos?</h2>
+		<p class="text-zinc-50 text-2xl mb-8" data-aos="fade-up" data-aos-delay="500" data-aos-offset="-50" id="cta-text">
+			Descubre nuestra <strong>variedad de chocolates</strong> y transforma tu <strong>experiencia sensorial.</strong></p>
+		<a class="inline-block bg-blue-600 text-white font-bold py-3 px-6 rounded-lg hover:bg-blue-700 transition duration-300"
+			data-aos="fade-up" data-aos-delay="800" data-aos-offset="-50" href="#" id="cta-button">Comprar Ahora</a>
+	</section> -->
+<!-- Sección Ubicación V1-->
+<!-- <section class="py-40 px-4 text-center bg-gradient-to-r from-amber-600 to-amber-800" id="ubicacion">
+		<div class="container md:mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
+			<div class="text-white mx-5 flex flex-col justify-center text-left pr-4 md:py-20">
+				<h2 class="text-6xl md:text-8xl font-bold mb-4" data-aos="fade-down">
+					Ubicación</h2>
+				<p class="text-2xl md:text-3xl mb-2" data-aos="fade-left" data-aos-delay="1000" id="ubicacion-calle">
+					Nueva Santo Domingo 241, San Francisco Tetecala</p>
+				<p class="text-2xl md:text-4xl font-bold mb-2" data-aos="fade-left" data-aos-delay="1000"
+					id="ubicacion-ciudad">Azcapotzalco, Ciudad de México</p>
+			</div>
+
+			<div class="relative w-full text-center mx-0 px-0 md:mx-10 rounded-xl"  data-aos="fade-right" data-aos-delay="100">
+            <iframe
+				id="google-places"
+                class="rounded-lg iframe-responsivo w-full h-full px-5"
+                style="border:0"
+                loading="lazy"
+                allowfullscreen
+                referrerpolicy="no-referrer-when-downgrade"
+                src="https://www.google.com/maps/embed/v1/place?key=AIzaSyCSMI2Hh70KP_FqVdqABZgW5mQ9iXH0LFo&q=DYCMACO" 
+                style="border:2px;" allowfullscreen="True" loading="lazy"></iframe>
+        	</div>
+		</div>
+	</section> -->
+</body>
+</html>
