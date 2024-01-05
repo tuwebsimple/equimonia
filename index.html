@@ -36,7 +36,7 @@
 		window.addEventListener('DOMContentLoaded', () => {
 			const heroBackground1 = document.getElementById('hero-background-1');
 			const heroBackground2 = document.getElementById('hero-background-2');
-			const images = ["https://firebasestorage.googleapis.com/v0/b/equimonia-afa09.appspot.com/o/IMG_3963.png?alt=media&token=6daf2ccd-9edc-42aa-94a5-3e1a37573c0a", "https://firebasestorage.googleapis.com/v0/b/equimonia-afa09.appspot.com/o/Formato_pg3.png?alt=media&token=03dd7044-0e87-4140-8466-8c095f08df32&_gl=1*7tlziz*_ga*MTk0NTkyMzI0Ni4xNjk2Mjc3MjA4*_ga_CW55HF8NVT*MTY5NzU5Mzc1Ny4yLjEuMTY5NzU5NTU0MC40OC4wLjA.", "https://firebasestorage.googleapis.com/v0/b/equimonia-afa09.appspot.com/o/IMG_4050.png?alt=media&token=c59e1443-d89b-40bb-a6cb-3129e1bb0695", "https://media.discordapp.net/attachments/1114023780071768084/1153031135710953473/Inicio.png?width=777&height=437", "https://media.discordapp.net/attachments/1114023780071768084/1144450312355196999/tuwebsimple444_horse_round_pen_with_stairs_uphill_site_shot_wit_3b15048c-9faa-47a3-9a9c-6026ec21093f.png?width=2078&height=890", "https://cdn.discordapp.com/attachments/1114023780071768084/1143190741884084304/tuwebsimple444_realistic_photograph_of_a_family_with_horses_loo_5c76d86a-f981-468d-93f7-dc5254590f48.png"];
+			const images = ["https://firebasestorage.googleapis.com/v0/b/equimonia-afa09.appspot.com/o/IMG_3963.png?alt=media&token=6daf2ccd-9edc-42aa-94a5-3e1a37573c0a", "https://firebasestorage.googleapis.com/v0/b/equimonia-afa09.appspot.com/o/Formato_pg3.png?alt=media&token=03dd7044-0e87-4140-8466-8c095f08df32&_gl=1*7tlziz*_ga*MTk0NTkyMzI0Ni4xNjk2Mjc3MjA4*_ga_CW55HF8NVT*MTY5NzU5Mzc1Ny4yLjEuMTY5NzU5NTU0MC40OC4wLjA.", "https://firebasestorage.googleapis.com/v0/b/equimonia-afa09.appspot.com/o/IMG_4050.png?alt=media&token=c59e1443-d89b-40bb-a6cb-3129e1bb0695", "https://media.discordapp.net/attachments/1114023780071768084/1153031135710953473/Inicio.png?width=777&height=437"];
 
 			// Iniciar el carrusel solo si la ventana es mayor que 768px
 			changeBackgroundImage(heroBackground1, heroBackground2, images, 0);
@@ -495,17 +495,17 @@
 
 		#card-1:hover #nombre-producto-1,
 		#card-1:hover #product-description-1 {
-			color: black;
+			color: white;
 		}
 
 		#card-2:hover #nombre-producto-2,
 		#card-2:hover #product-description-2 {
-			color: black;
+			color: white;
 		}
 
 		#card-3:hover #nombre-producto-3,
 		#card-3:hover #product-description-3 {
-			color: black;
+			color: white;
 		}
 
 		/* Este será el estilo por defecto (móvil) */
@@ -541,7 +541,27 @@
 				background-attachment:fixed;
 			}
 		}
+		
+		.floating-descripcion {
+			animation-name: floating-descripcion;
+			animation-duration: 12s;
+			animation-iteration-count: infinite;
+			animation-timing-function: ease-in-out;
+		}
 
+		@keyframes floating-descripcion {
+			0% {
+				transform: translate(0, -5px);
+			}
+
+			50% {
+				transform: translate(0, 5px);
+			}
+
+			100% {
+				transform: translate(0, -5px);
+			}
+		}
 		
 
 		.floating {
@@ -602,7 +622,7 @@
 			}
 
 			#imagen-fondo-acerca-de {
-				content: url('https://cdn.midjourney.com/79884088-5088-48a9-b6b5-07f04bc3f93e/0_1.png');
+				content: url('https://media.discordapp.net/attachments/1114023780071768084/1192836688297345085/tuwebsimple444_gradient_background_different_colors_of_orange_c9da6525-e290-4ecc-9d15-0a269d6d02c1.png?ex=65aa86bc&is=659811bc&hm=ad33a7d94864c7a1533274be327c5534408e3d5e1b4297bdd03b2852ec3b3140&=&format=webp&quality=lossless&width=348&height=926');
 			}
 		}
 
@@ -626,6 +646,34 @@
 			}
 		}
 
+		/* Estilo para el modal */
+		#modal {
+			display: none; /* Inicialmente oculto */
+			position: fixed;
+			top: 0;
+			left: 0;
+			z-index: 80;
+			width: 100%;
+			height: 100%;
+			background-color: rgba(0, 0, 0, 0.7);
+			justify-content: center;
+			align-items: center;
+		}
+
+		/* Estilo para mostrar el modal */
+		#modal:not(.hidden) {
+			display: flex;
+		}
+
+		/* Estilo para el video */
+		#modal-video {
+			max-width: 90%; 
+			max-height: 90vh; 
+			width: auto; 
+			height: auto; 
+			object-fit: contain; 
+		}
+
 
 
 
@@ -636,14 +684,14 @@
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai&amp;display=swap" rel="stylesheet"/></head>
 <body>
 <!-- Barra de navegación -->
-<nav class="fixed w-full top-0 z-30 navbar-transition bg-transparent text-white" id="navbar">
+<nav class="fixed w-full top-0 z-50 navbar-transition bg-transparent text-white" id="navbar">
 <div class="container mx-auto px-4 py-2 flex items-center justify-between">
 <div class="flex items-center">
 <a class="text-sm mx-4 md:text-xxl font-bold" data-aos="fade-right" data-aos-delay="1000" href="index.html">Inicio</a>
-<a class="text-sm mx-4 md:text-xxl font-bold" data-aos="fade-right" data-aos-delay="1200" href="#acerca-de" id="navbar-tipo">Misión</a>
 <a class="text-sm mx-4 md:text-xxl font-bold" data-aos="fade-right" data-aos-delay="1300" href="#google-places">Ubicación</a>
+<a class="text-sm mx-4 md:text-xxl font-bold" data-aos="fade-right" data-aos-delay="1200" href="#mas-info" id="navbar-tipo">Nuestras Sesiones</a>
 </div>
-<a href="index.html#contacto" rel="noopener noreferrer" target="_blank">
+<a href="#contacto" rel="noopener noreferrer" target="_blank">
 <img alt="Icon" class="w-10 h-10 ml-4" loading="lazy" src="https://cdn-icons-png.flaticon.com/512/2504/2504957.png"/>
 </a>
 </div>
@@ -666,7 +714,7 @@
 </div>
 <h1 class="text-5xl md:text-8xl text-center font-bold drop-shadow-xl" data-aos="fade-up" id="nombre-empresa"></h1>
 <div class="text-center py-10 px-1 md:px-0">
-<h1 class="text-2xl font-bold text-white md:text-4xl drop-shadow-xl" data-aos="fade-up" data-aos-delay="800" data-aos-offset="-100" id="slogan">Aprendizaje asistido con equinos</h1>
+<h1 class="text-2xl font-bold text-white md:text-4xl drop-shadow-xl" data-aos="fade-up" data-aos-delay="800" data-aos-offset="-100" id="slogan">Aprendizaje y Coaching asistido con equinos</h1>
 <div class="flex justify-center mt-4 space-x-0 md:space-x-2">
 <a class="text-right" href="https://www.instagram.com/equi.monia/">
 <!-- <svg aria-hidden="true" class="w-5 h-5 mr-2 -ml-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M3 1a1 1 0 000 2h1.22l.305 1.222a.997.997 0 00.01.042l1.358 5.43-.893.892C3.74 11.846 4.632 14 6.414 14H15a1 1 0 000-2H6.414l1-1H14a1 1 0 00.894-.553l3-6A1 1 0 0017 3H6.28l-.31-1.243A1 1 0 005 1H3zM16 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zM6.5 18a1.5 1.5 0 100-3 1.5 1.5 0 000 3z"></path></svg> -->
@@ -686,50 +734,57 @@
 <!-- Sección Descripción -->
 <section class="bg-white py-10">
 <div class="max-w-6xl px-6 py-10 mx-auto">
-<main class="relative z-20 w-full md:flex md:items-center xl:mt-12">
+<main class="relative z-20 w-full md:flex md:items-center xl:my-12">
 <div class="absolute w-full h-full md:h-full md:p-5 bg-gradient-to-r from-blue-700 to-blue-600 -z-10 rounded-2xl shadow-lg" id="color-descripcion"></div>
-<div class="w-full p-6 md:flex md:items-center rounded-2xl md:p-0 md:justify-evenly md:flex-row md:space-x-6">
-<div class="w-full h-[250px] md:h-full md:w-4/6 perspective-left floating flex-3" data-aos="fade-up" data-aos-delay="200">
-<div class="skew-left-descripcion card-full-bleed">
-<iframe allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share" allowfullscreen="true" class="perspective-left-description floating" frameborder="0" id="dynamicIframe" scrolling="no" src="https://www.facebook.com/plugins/video.php?height=300&amp;width=450&amp;href=https%3A%2F%2Fwww.facebook.com%2FEqui.monia%2Fvideos%2F285996709672298%2F&amp;show_text=false&amp;t=0" style="border:none;overflow:hidden"></iframe>
+<div class="w-full p-6 md:items-center rounded-2xl md:p-0 md:justify-evenly md:flex md:space-x-60">
+<!-- VIDEO DESCRIPCION -->
+<div class="w-full md:h-[250px] md:h-full md:w-4/6 perspective-left" data-aos="fade-up" data-aos-delay="1000" style="width: 350px;">
+<!-- <div class="skew-left-descripcion card-full-bleed"> -->
+<div class="card-full-bleed">
+
+<iframe allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share" allowfullscreen="true" class="perspective-left-description" frameborder="0" id="dynamicIframe" scrolling="no" src="https://www.facebook.com/plugins/video.php?height=314&amp;href=https%3A%2F%2Fwww.facebook.com%2FEqui.monia%2Fvideos%2F1637899313284372%2F&amp;show_text=false&amp;width=560&amp;t=0" style="border:none;overflow:hidden"></iframe>
+
 </div>
 </div>
-<div class="mt-0 md:my-6 md:w-3/4 flex-1" style="margin-left: 0px; margin-right: 40px;">
+<!-- TEXTO DESCRIPCION -->
+<div class="mt-0 md:my-6 md:w-full">
 <div>
 <p class="text-6xl font-bold tracking-tight text-zinc-50" data-aos="fade-right" data-aos-delay="300" id="titulo-empresa">Equimonía</p>
 <p class="text-xl font-bold text-zinc-200" data-aos="fade-right" data-aos-delay="600" id="subtitulo-empresa">¿Quiénes somos?</p>
 </div>
-<hr class="mt-4" data-aos="fade-right" data-aos-delay="600" style="border-color: whitesmoke; width: 400px;"/>
-<p class="mt-4 text-md leading-relaxed text-zinc-50 md:text-xl" data-aos="fade-right" data-aos-delay="800" id="descripcion-empresa">Somos una empresa que se dedica al coaching asistido con equinos, donde nuestra meta principal es proporcionar herramientas para que cada individuo encuentre un equilibrio en todos los aspectos de su vida personal y profesional convirtiéndose en su propio líder.</p>
+<hr class="mt-4" data-aos="fade-right" data-aos-delay="600" style="border-color: whitesmoke; width: 600px;"/>
+<p class="mt-4 pr-5 text-md leading-relaxed text-zinc-50 md:text-xl" data-aos="fade-right" data-aos-delay="800" id="descripcion-empresa">Somos una empresa que se dedica al coaching asistido con equinos, donde nuestra meta principal es proporcionar herramientas para que cada individuo encuentre un equilibrio en todos los aspectos de su vida personal y profesional convirtiéndose en su propio líder.</p>
 </div>
 </div>
 </main>
 </div>
 </section>
-<!-- Seccion Figma -->
+<!-- Seccion Oferta -->
 <div class="flex-col overflow-hidden relative flex min-h-[420px] items-center px-5">
 <img class="absolute z-[-1] h-full w-full object-cover object-center inset-0" loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/102a13a2-d1ce-49c2-8b55-98049c29af9d?apiKey=6b5c83656f3e4a62a08161b0635627a3&amp;"/>
-<section class="relative w-full max-w-[1140px] mt-28 mb-24 max-md:max-w-full max-md:my-10">
+<section class="relative w-full max-w-[1280px] mt-28 mb-24 max-md:max-w-full max-md:my-10">
 <div class="gap-5 flex max-md:flex-col max-md:items-stretch max-md:gap-0">
-<article class="flex flex-col items-stretch w-[62%] max-md:w-full max-md:ml-0">
+<article class="flex flex-col items-stretch max-md:w-full max-md:ml-0">
 <div class="relative flex grow flex-col items-stretch max-md:max-w-full max-md:mt-6">
-<h1 class="text-white text-5xl font-bold leading-[62px] tracking-tighter max-md:max-w-full max-md:text-4xl max-md:leading-[53px]" data-aos="fade-down" data-aos-delay="0">
-				Listo para comenzar <br/> a transformar tu vida
-			</h1>
+<h1 class="text-white text-5xl font-bold tracking-tighter max-md:max-w-full max-md:text-4xl max-md:leading-[53px]" data-aos="fade-down" data-aos-delay="0">
+					¡Inicia 2024 con Armonía en Equimonía!🌟
+				</h1>
 <p class="text-white text-lg leading-7 mt-5 max-md:max-w-full" data-aos="fade-down" data-aos-delay="400">
-				Únete a la historia de crecimiento personal que más personas han vivido con Equimonía
-			</p>
+					Este enero, dale a tu bienestar la prioridad que merece con Equimonía. Estamos encantados de invitarte a comenzar el año nuevo con una decisión positiva: <span class="font-extrabold">disfruta de un 25% de descuento en todas nuestras sesiones</span> para que empieces el 2024 lleno de energía y equilibrio.
+					
+				</p>
+<p class="text-white text-lg leading-7 mt-5 max-md:max-w-full" data-aos="fade-down" data-aos-delay="400">
+<span class="font-extrabold">Este descuento exclusivo está disponible durante todo el mes de enero. Reserva tu sesión ahora y haz que este nuevo año marque el comienzo de tu transformación.<br/>
+</span></p>
 </div>
 </article>
-<div class="flex flex-col text-center items-stretch w-[19%] ml-5 max-md:w-full max-md:ml-0">
-<a class="text-zinc-800 text-lg font-bold leading-5 tracking-tight whitespace-nowrap bg-white relative items-center w-full m-auto px-5 py-4 rounded-3xl mt-5 md:mt-10" data-aos="fade-down" data-aos-delay="1000" href="#">
-			Whatsapp
-			</a>
-</div>
-<div class="flex flex-col items-stretch text-center w-[19%] ml-5 max-md:w-full max-md:ml-0">
-<a class="text-white text-lg font-bold leading-5 tracking-tight whitespace-nowrap bg-white bg-opacity-20 relative items-center w-full m-auto py-4 p-5 rounded-3xl mt-5 md:mt-10" data-aos="fade-down" data-aos-delay="1200" href="#">
-			Quiero saber más
-			</a>
+<div class="flex flex-col items-end md:ml-5">
+<a class="text-zinc-800 text-md md:text-lg text-center font-bold leading-5 tracking-tight whitespace-nowrap bg-white relative items-center w-full m-auto px-5 py-4 rounded-3xl mt-5 md:mt-20 hover:bg-blue-500 hover:text-white" data-aos="fade-down" data-aos-delay="1000" href="#contacto">
+                    Aprovecha esta oferta
+                </a>
+<a class="text-white text-md md:text-lg text-center font-bold leading-5 tracking-tight whitespace-nowrap bg-white bg-opacity-10 relative items-center w-full m-auto py-4 p-5 rounded-3xl mt-5 md:mt-5 hover:bg-white hover:text-black" data-aos="fade-down" data-aos-delay="1200" href="#mas-info">
+                    Conoce más sobre nuestras sesiones
+                </a>
 </div>
 </div>
 </section>
@@ -749,17 +804,28 @@
 </header>
 <div class="flex items-center justify-center text-center w-full flex-col mt-0 md:mt-0 mb-24 max-md:max-w-full md:my-10">
 <div class="self-center flex max-w-full items-stretch gap-2.5 mt-10 max-md:flex-wrap max-md:mt-10">
-<a class="flex grow basis-[0%] flex-col items-stretch" href="https://www.instagram.com/angelinadelag/">
-<div class="text-white text-center text-lg font-medium leading-7 whitespace-nowrap bg-blue-600 items-center px-2 md:px-5 py-3 md:py-4 rounded-[100px]" data-aos="fade-down" data-aos-delay="1000">
-				Siguela en su Instagram</div>
-</a>
+<!-- <a href="#" class="flex grow basis-[0%] flex-col items-stretch">
+				<div onclick="showModal('https://www.kindacode.com/wp-content/uploads/2022/07/flower-4.jpeg')" 
+				class="text-white text-center text-lg font-medium leading-7 whitespace-nowrap bg-blue-600 items-center px-2 md:px-5 py-3 md:py-4 rounded-[100px]" data-aos="fade-down" data-aos-delay="1000">
+				Conoce más</div>
+			</a> -->
+<div class="text-white text-center text-lg font-medium leading-7 whitespace-nowrap bg-blue-600 items-center px-2 md:px-5 py-3 md:py-4 rounded-[100px] flex grow basis-[0%] flex-col items-stretch" data-aos="fade-down" data-aos-delay="1000" onclick="showModal('introduccion.mp4')">
+				Conoce más</div>
 <a class="flex grow basis-[0%] flex-col items-stretch" href="#productos">
-<div class="text-violet-950 text-center text-lg font-medium leading-7 whitespace-nowrap border-[color:var(--colors-grey,#EBEAED)] items-center px-2 md:px-5 py-3 md:py-4 rounded-[100px] border-2 border-solid" data-aos="fade-down" data-aos-delay="1400">
+<div class="text-violet-950 text-center text-lg font-medium leading-7 whitespace-nowrap border-[color:var(--colors-grey,#EBEAED)] items-center px-2 md:px-5 py-3 md:py-4 rounded-[100px] border-2 border-solid hover:bg-blue-600 hover:text-white hover:font-bold hover:border-white" data-aos="fade-down" data-aos-delay="1400">
 				Saber más sobre nuestras sesiones</div>
 </a>
 </div>
 <!-- <img loading="lazy" srcset="" class="aspect-[1.87] object-contain object-center w-full overflow-hidden self-stretch mt-16 max-md:max-w-full max-md:mt-10" /> -->
-<video autoplay="" class="w-full shadow-lg mt-10" loop="" muted="" playsinline="" src="introduccion.mp4"></video>
+<!-- Video de Geli -->
+<!-- <video class="w-full shadow-lg mt-10" src="introduccion.mp4" autoplay loop muted playsinline></video> -->
+<!-- The Modal -->
+<div class="hidden fixed top-0 left-0 z-80 w-screen h-screen bg-black/70 flex justify-center items-center" id="modal">
+<!-- The close button -->
+<a class="fixed z-90 top-5 right-20 text-white text-5xl font-bold" href="javascript:void(0)" onclick="closeModal()">×</a>
+<!-- A video will be displayed here -->
+<video class="object-cover" controls="" id="modal-video"></video>
+</div>
 </div>
 </div>
 </section>
@@ -776,19 +842,19 @@
 <h1 class="text-4xl md:text-6xl md:pb-5 font-extrabold text-center text-gray-200 md:text-gray-700 capitalize drop-shadow-xl" data-aos="fade-up" data-aos-delay="0" data-aos-offset="-50" id="titulo-productos">Nuestros Programas</h1>
 <div class="grid grid-cols-1 gap-4 md:gap-0 md:grid-cols-2 xl:grid-cols-3">
 <div class="glass flex flex-col items-center m-2 md:m-8 space-y-3 text-center hover:shadow-lg hover:shadow-black/30" data-aos="fade-up" data-aos-delay="1000" id="card-1">
-<h1 class="text-3xl text-gray-50 font-bold capitalize py-1 h-20" id="nombre-producto-1">Sesiones individuales</h1>
+<h1 class="text-3xl text-gray-900 font-bold capitalize py-1 h-20" id="nombre-producto-1">Sesiones individuales</h1>
 <img alt="product 1" class="w-100 p-2 rounded-xl mt-5 hover:scale-100" id="imagen-producto" src="https://media.discordapp.net/attachments/1114023780071768084/1145854368055316700/271931973_457689072503060_2179355220738249346_n.png?width=523&amp;height=523"/>
-<p class="text-slate-50 text-lg md:text-xl" id="product-description-1">Descubre el autoconocimiento y bienestar integral con sesiones personalizadas en Equimonía.</p>
+<p class="text-slate-900 text-lg md:text-xl" id="product-description-1">Descubre el autoconocimiento y bienestar integral con sesiones personalizadas en Equimonía.</p>
 </div>
 <div class="glass flex flex-col items-center m-2 md:m-8 space-y-3 text-center hover:shadow-lg hover:shadow-black/30" data-aos="fade-up" data-aos-delay="2000" id="card-1">
-<h1 class="text-3xl text-gray-50 font-bold capitalize py-1 h-20" id="nombre-producto-1">Talleres</h1>
+<h1 class="text-3xl text-gray-900 font-bold capitalize py-1 h-20" id="nombre-producto-1">Talleres</h1>
 <img alt="product 2" class="w-100 p-2 rounded-xl mt-5 hover:scale-100" id="imagen-producto" src="https://media.discordapp.net/attachments/1114023780071768084/1153035306468122694/Formato_cuadrado8.png?width=383&amp;height=383"/>
-<p class="text-slate-50 text-lg md:text-xl" id="product-description-1">Participa en nuestros talleres grupales y adquiere estrategias para afrontar los desafíos de la vida cotidiana.</p>
+<p class="text-slate-900 text-lg md:text-xl" id="product-description-1">Participa en nuestros talleres grupales y adquiere estrategias para afrontar los desafíos de la vida cotidiana.</p>
 </div>
 <div class="glass flex flex-col items-center m-2 md:m-8 space-y-3 text-center hover:shadow-lg hover:shadow-black/30" data-aos="fade-up" data-aos-delay="3000" id="card-1">
-<h1 class="text-3xl text-gray-50 font-bold capitalize py-1 h-20" id="nombre-producto-1">Sesiones de pareja/familiares</h1>
+<h1 class="text-3xl text-gray-900 font-bold capitalize py-1 h-20" id="nombre-producto-1">Sesiones de pareja/familiares</h1>
 <img alt="product 3" class="w-100 p-2 rounded-xl mt-5 hover:scale-100" id="imagen-producto" src="https://media.discordapp.net/attachments/1114023780071768084/1153035333320060958/Formato_cuadrado9.png?width=383&amp;height=383"/>
-<p class="text-slate-50 text-lg md:text-xl" id="product-description-1">Fortalece los lazos familiares y construye relaciones más sanas y amorosas con la ayuda de nuestros equinos.</p>
+<p class="text-slate-900 text-lg md:text-xl" id="product-description-1">Fortalece los lazos familiares y construye relaciones más sanas y amorosas con la ayuda de nuestros equinos.</p>
 </div>
 </div>
 </div>
@@ -818,7 +884,7 @@
                 <i class="fa fa-chevron-up absolute right-0 pt-1 text-base"></i>
 </summary>
 <div class="bg-white px-5 py-3 text-md font-light">
-<p>@angelinadelag y @paupliego son dos apasionados en el crecimiento personal y los animales que fundaron Equimonía con el propósito de compartir los beneficios terapéuticos de los caballos.</p>
+<p>@angelinadelag y @paupliego son dos mujeres con experiencia en el crecimiento personal y los animales que fundaron Equimonía con el propósito de compartir los beneficios terapéuticos de los caballos.</p>
 </div>
 </details>
 <details class="relative mb-3 mt-5" data-aos="fade-down" data-aos-delay="1450" data-aos-offset="-50">
@@ -866,7 +932,7 @@
 <div class="h-full mt-5 md:mt-2 lg:mt-0 md:pl-10" id="video-section">
 <div class="perspective-right-insta-profile floating pl-10 md:pl-0" data-aos="fade-up" data-aos-delay="1000" id="video-container">
 <video autoplay="" class="skew-right-insta-profile clean-card card-full-bleed hover:scale-105" height="250" id="video" loop="" muted="" playsinline="" width="620">
-<source data-src="Record.mov" id="video-source-instagram" src="insta.mov" type="video/mp4"/>
+<source data-src="Record.mov" id="video-source-instagram" src="insta.mp4" type="video/mp4"/>
 </video>
 </div>
 </div>
@@ -877,7 +943,7 @@
 <section class="mb-32">
 <div class="cta-background relative z-0 py-20 overflow-hidden bg-no-repeat bg-cover bg-center aos-init order-last" id="cta-imagen" style="background-image:url(https://cdn.discordapp.com/attachments/1114023780071768084/1156401705815122020/8x2gi68i_1.png?ex=6514d683&amp;is=65138503&amp;hm=69454a0dc79126240ed396c7e080c70edf878bd1906b0398d923a71f49a648d4&amp;); height: 500px; background-position: center;">
 </div>
-<div class="relative z-50 container mx-auto px-6 md:px-10 md:pt-10 order-first">
+<div class="relative z-30 container mx-auto px-6 md:px-10 md:pt-10 order-first">
 <div class="text-center text-gray-800">
 <div class="relative block rounded-lg shadow-lg px-2 py-12 md:py-16 md:px-12 aos-init" data-aos="fade-up" data-aos-delay="600" data-aos-offset="-50" style="margin-top: -170px; background: hsla(0, 0%, 100%, 0.7); backdrop-filter: blur(5px);">
 <h1 class="text-3xl md:text-5xl md:text-6xl xl:text-7xl font-bold tracking-tight mb-12 drop-shadow-xl" id="cta-title-1">¿Listo para un cambio?</h1>
@@ -886,6 +952,186 @@
 </div>
 </div>
 </div>
+</section>
+<!-- Sección Más Información -->
+<section id="mas-info">
+<div class="items-center self-stretch bg-white flex flex-col px-20 py-12 max-md:px-5">
+<h1 class="text-4xl md:text-6xl font-medium text-center text-gray-800 capitalize drop-shadow-xl" data-aos="fade-down" id="mas-info-title">
+				Más sobre nuestras sesiones</h1>
+<!-- Subsección 1 -->
+<div class="self-stretch max-md:max-w-full max-md:mt-10 max-md:pl-5 md:mt-20">
+<div class="gap-5 flex max-md:flex-col max-md:items-stretch max-md:gap-0">
+<div class="flex flex-col items-stretch w-[49%] max-md:w-full max-md:ml-0">
+<div class="items-start flex flex-col max-md:max-w-full">
+<!-- Titulo de subsección -->
+<div class="self-stretch text-gray-900 text-3xl font-semibold leading-10 max-md:max-w-full text-center md:text-left" data-aos="fade-down" data-aos-delay="500">
+									Sesiones Individuales</div>
+<!-- Subtitulo de subsección -->
+<div class="self-stretch text-gray-500 text-lg leading-7 mt-4 max-md:max-w-full" data-aos="fade-down" data-aos-delay="1000">
+										Descubre el poder transformador de una sesión individual con nuestros caballos, diseñada exclusivamente para ti. En Equimonía, entendemos que cada persona es única, y por eso nuestras sesiones se adaptan a tus necesidades emocionales y personales.
+										</div>
+<!-- Bullets -->
+<div class="items-stretch self-stretch flex flex-col md:mt-5 pl-4 max-md:max-w-full">
+<div class="items-stretch flex justify-between gap-3 mt-5 max-md:max-w-full" data-aos="fade-down" data-aos-delay="1300">
+<img class="aspect-square object-contain object-center w-7 fill-purple-100 overflow-hidden shrink-0 max-w-full" loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/daf93b8072e4e929162239b52dc8b12696d3f1e0911f1e574f372c99b5cb9f53?apiKey=6b5c83656f3e4a62a08161b0635627a3&amp;"/>
+<div class="text-gray-700 text-md md:text-lg leading-7 grow shrink basis-auto max-md:max-w-full">
+<span class="font-extrabold">Flexibilidad de Programación:</span> Elige el momento que mejor se ajuste a ti para una experiencia sin prisas ni distracciones.
+										</div>
+</div>
+<div class="items-stretch flex justify-between gap-3 mt-5 max-md:max-w-full" data-aos="fade-down" data-aos-delay="1600">
+<img class="aspect-square object-contain object-center w-7 fill-purple-100 overflow-hidden shrink-0 max-w-full" loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/daf93b8072e4e929162239b52dc8b12696d3f1e0911f1e574f372c99b5cb9f53?apiKey=6b5c83656f3e4a62a08161b0635627a3&amp;"/>
+<div class="text-gray-700 text-md md:text-lg leading-7 grow shrink basis-auto max-md:max-w-full">
+<span class="font-extrabold">Enfoque en Resultados Personales:</span> Establece y trabaja hacia metas específicas que son importantes para ti.
+										</div>
+</div>
+<div class="items-stretch flex justify-between gap-3 mt-5 max-md:max-w-full" data-aos="fade-down" data-aos-delay="1900" data-aos-offset="-10">
+<img class="aspect-square object-contain object-center w-7 fill-purple-100 overflow-hidden shrink-0 max-w-full" loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/daf93b8072e4e929162239b52dc8b12696d3f1e0911f1e574f372c99b5cb9f53?apiKey=6b5c83656f3e4a62a08161b0635627a3&amp;"/>
+<div class="text-gray-700 text-md md:text-lg leading-7 grow shrink basis-auto max-md:max-w-full">
+<span class="font-extrabold">Atención Exclusiva:</span> Recibe la guía y atención completa en un entorno uno-a-uno.  
+										</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Imagen a la derecha -->
+<div class="flex flex-col items-center w-[45%] ml-5 max-md:w-full max-md:ml-0 hover:scale-105" data-aos="fade-left" data-aos-delay="1000">
+<img class="aspect-[1.16] object-contain object-center w-3/4 overflow-hidden grow max-md:max-w-full max-md:mt-10" loading="lazy" srcset="https://scontent.ftlc2-1.fna.fbcdn.net/v/t39.30808-6/415779297_18014058698027861_4715100335448671119_n.jpg?_nc_cat=101&amp;ccb=1-7&amp;_nc_sid=3635dc&amp;_nc_ohc=SMlrw4n8ygUAX8ow6KL&amp;_nc_ht=scontent.ftlc2-1.fna&amp;oh=00_AfDdoXvpDIITTmL6z0nAfJMF1dE5lbNANs1N-8-16cHGEQ&amp;oe=659CB1F0 100w"/>
+</div>
+</div>
+</div>
+<!-- Subsección 2 -->
+<div class="self-stretch max-md:max-w-full max-md:mt-10 max-md:pl-5 md:mt-40">
+<div class="flex flex-col-reverse md:flex-row gap-5 max-md:items-stretch max-md:gap-0">
+<!-- Imagen a la izquierda para escritorio, abajo para móvil -->
+<div class="flex flex-col items-center w-[45%] mr-5 max-md:w-full max-md:mr-0 hover:scale-105" data-aos="fade-right" data-aos-delay="1000">
+<img class="aspect-[1.16] object-contain object-center w-3/4 overflow-hidden grow max-md:max-w-full max-md:mt-10" loading="lazy" srcset="https://scontent.ftlc2-1.fna.fbcdn.net/v/t39.30808-6/277000403_492554075683226_6893687184557064494_n.jpg?_nc_cat=102&amp;ccb=1-7&amp;_nc_sid=c83dfd&amp;_nc_ohc=QqMAP_HLXsgAX8jf1Yn&amp;_nc_ht=scontent.ftlc2-1.fna&amp;oh=00_AfCV2BhunOrV_seq_xvSCVcghlvWZeV_Anomia6WheH4Kg&amp;oe=659B9BF5 100w"/>
+</div>
+<!-- Texto -->
+<div class="flex flex-col items-stretch w-[49%] max-md:w-full max-md:ml-0">
+<!-- Contenido de texto aquí -->
+<div class="flex flex-col items-stretch max-md:w-full max-md:ml-0">
+<div class="items-start flex flex-col max-md:max-w-full">
+<!-- Titulo de subsección -->
+<div class="self-stretch text-gray-900 text-3xl font-semibold leading-10 max-md:max-w-full text-center md:text-left" data-aos="fade-down" data-aos-delay="0">
+										Sesiones en Pareja</div>
+<!-- Subtitulo de subsección -->
+<div class="self-stretch text-gray-500 text-lg leading-7 mt-4 max-md:max-w-full" data-aos="fade-down" data-aos-delay="1000">
+										Cultiva tu relación con una experiencia compartida única. Nuestras sesiones en pareja brindan un momento de conexión profunda, apoyándose en la serenidad y la empatía natural de los caballos.</div>
+<!-- Bullets -->
+<div class="items-stretch self-stretch flex flex-col mt-8 pl-4 max-md:max-w-full">
+<div class="items-stretch flex justify-between gap-3 max-md:max-w-full" data-aos="fade-down" data-aos-delay="1300">
+<img class="aspect-square object-contain object-center w-7 fill-purple-100 overflow-hidden shrink-0 max-w-full" loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/daf93b8072e4e929162239b52dc8b12696d3f1e0911f1e574f372c99b5cb9f53?apiKey=6b5c83656f3e4a62a08161b0635627a3&amp;"/>
+<div class="text-gray-700 text-md md:text-lg leading-7 grow shrink basis-auto max-md:max-w-full">
+<span class="font-extrabold">Fortalecimiento de Vínculos:</span>Descubre nuevas formas de comunicación y comprensión mutua.
+											</div>
+</div>
+<div class="items-stretch flex justify-between gap-3 mt-5 max-md:max-w-full" data-aos="fade-down" data-aos-delay="1600">
+<img class="aspect-square object-contain object-center w-7 fill-purple-100 overflow-hidden shrink-0 max-w-full" loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/daf93b8072e4e929162239b52dc8b12696d3f1e0911f1e574f372c99b5cb9f53?apiKey=6b5c83656f3e4a62a08161b0635627a3&amp;"/>
+<div class="text-gray-700 text-md md:text-lg leading-7 grow shrink basis-auto max-md:max-w-full">
+<span class="font-extrabold">Momento de Calidad:</span> Disfruta del tiempo juntos en un entorno tranquilo y sanador.
+											</div>
+</div>
+<div class="items-stretch flex justify-between gap-3 mt-5 max-md:max-w-full" data-aos="fade-down" data-aos-delay="1900">
+<img class="aspect-square object-contain object-center w-7 fill-purple-100 overflow-hidden shrink-0 max-w-full" loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/daf93b8072e4e929162239b52dc8b12696d3f1e0911f1e574f372c99b5cb9f53?apiKey=6b5c83656f3e4a62a08161b0635627a3&amp;"/>
+<div class="text-gray-700 text-md md:text-lg leading-7 grow shrink basis-auto max-md:max-w-full">
+<span class="font-extrabold">Experiencia Emocional Conjunta:</span> Crea recuerdos valiosos mientras aprendes uno del otro.
+											</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Subsección 3 -->
+<div class="self-stretch max-md:max-w-full max-md:mt-10 max-md:pl-5 md:mt-40">
+<div class="gap-5 flex max-md:flex-col max-md:items-stretch max-md:gap-0">
+<div class="flex flex-col items-stretch w-[49%] max-md:w-full max-md:ml-0">
+<div class="items-start flex flex-col max-md:max-w-full">
+<!-- Titulo de subsección -->
+<div class="self-stretch text-gray-900 text-3xl font-semibold leading-10 max-md:max-w-full text-center md:text-left" data-aos="fade-down" data-aos-delay="0">
+									Talleres de Autoconocimiento <br/> Familiares y Empresariales</div>
+<!-- Subtitulo de subsección -->
+<div class="self-stretch text-gray-500 text-lg leading-7 mt-4 max-md:max-w-full" data-aos="fade-down" data-aos-delay="1000">
+									Fortalece las dinámicas de tu grupo con talleres que promueven la unidad y el crecimiento colectivo, guiados por la intuitiva interacción con los caballos.
+									</div>
+<!-- Bullets -->
+<div class="items-stretch self-stretch flex flex-col mt-8 pl-4 max-md:max-w-full">
+<div class="items-stretch flex justify-between gap-3 max-md:max-w-full" data-aos="fade-down" data-aos-delay="1300">
+<img class="aspect-square object-contain object-center w-7 fill-purple-100 overflow-hidden shrink-0 max-w-full" loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/daf93b8072e4e929162239b52dc8b12696d3f1e0911f1e574f372c99b5cb9f53?apiKey=6b5c83656f3e4a62a08161b0635627a3&amp;"/>
+<div class="text-gray-700 text-md md:text-lg leading-7 grow shrink basis-auto max-md:max-w-full">
+<span class="font-extrabold">Mejora de la Comunicación:</span> Fomenta la apertura y el diálogo honesto entre miembros.
+										</div>
+</div>
+<div class="items-stretch flex justify-between gap-3 mt-5 max-md:max-w-full" data-aos="fade-down" data-aos-delay="1600">
+<img class="aspect-square object-contain object-center w-7 fill-purple-100 overflow-hidden shrink-0 max-w-full" loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/daf93b8072e4e929162239b52dc8b12696d3f1e0911f1e574f372c99b5cb9f53?apiKey=6b5c83656f3e4a62a08161b0635627a3&amp;"/>
+<div class="text-gray-700 text-md md:text-lg leading-7 grow shrink basis-auto max-md:max-w-full">
+<span class="font-extrabold">Cooperación y Trabajo en Equipo:</span> Cultiva la colaboración a través de actividades dirigidas.
+										</div>
+</div>
+<div class="items-stretch flex justify-between gap-3 mt-5 max-md:max-w-full" data-aos="fade-down" data-aos-delay="1900">
+<img class="aspect-square object-contain object-center w-7 fill-purple-100 overflow-hidden shrink-0 max-w-full" loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/daf93b8072e4e929162239b52dc8b12696d3f1e0911f1e574f372c99b5cb9f53?apiKey=6b5c83656f3e4a62a08161b0635627a3&amp;"/>
+<div class="text-gray-700 text-md md:text-lg leading-7 grow shrink basis-auto max-md:max-w-full">
+<span class="font-extrabold">Desarrollo de Liderazgo:</span> Inspira liderazgo y confianza en cada participante.
+										</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Imagen a la derecha -->
+<div class="flex flex-col items-center w-[45%] ml-5 max-md:w-full max-md:ml-0 hover:scale-105" data-aos="fade-left" data-aos-delay="1000">
+<img class="aspect-[1.16] object-contain object-center w-3/4 overflow-hidden grow max-md:max-w-full max-md:mt-10" loading="lazy" srcset="https://scontent.ftlc2-1.fna.fbcdn.net/v/t39.30808-6/404147905_18009583724027861_8579083812056891750_n.jpg?_nc_cat=106&amp;ccb=1-7&amp;_nc_sid=3635dc&amp;_nc_ohc=vxwD0PhACkIAX_g6yEJ&amp;_nc_ht=scontent.ftlc2-1.fna&amp;oh=00_AfByGYmcjpBixMmWYrzff5zCpzSiYGCwcxphTReAAA1IXg&amp;oe=659B53B3 100w"/>
+</div>
+</div>
+</div>
+<!-- Subsección 4 -->
+<div class="self-stretch max-md:max-w-full max-md:mt-10 max-md:pl-5 md:mt-40">
+<div class="flex flex-col-reverse md:flex-row gap-5 max-md:items-stretch max-md:gap-0">
+<!-- Imagen a la izquierda -->
+<div class="flex flex-col items-center w-[45%] mr-5 max-md:w-full max-md:mr-0 hover:scale-105" data-aos="fade-down" data-aos-delay="1500">
+<img class="aspect-[1.16] object-contain object-center w-3/4 overflow-hidden grow max-md:max-w-full max-md:mt-10" loading="lazy" srcset="https://scontent.ftlc2-1.fna.fbcdn.net/v/t1.6435-9/159869107_261647328773903_3513297122998148641_n.jpg?_nc_cat=108&amp;ccb=1-7&amp;_nc_sid=810d5f&amp;_nc_ohc=P9t5JOxFZaIAX_nxXaQ&amp;_nc_ht=scontent.ftlc2-1.fna&amp;oh=00_AfBmnY68uLBYNyNQYeAerIRW0FDfjXq6OXRuK-dwAFoyFA&amp;oe=65BE73FF 100w"/>
+</div>
+<!-- Texto -->
+<div class="flex flex-col items-stretch w-[49%] max-md:w-full max-md:ml-0">
+<div class="items-start flex flex-col max-md:max-w-full">
+<!-- Titulo de subsección -->
+<div class="self-stretch text-gray-900 text-3xl font-semibold leading-10 max-md:max-w-full text-center md:text-left" data-aos="fade-down" data-aos-delay="0">
+									Talleres para Niños y Adolescentes</div>
+<!-- Subtitulo de subsección -->
+<div class="self-stretch text-gray-500 text-lg leading-7 mt-4 max-md:max-w-full" data-aos="fade-down" data-aos-delay="1000">
+										Inspiramos a los más jóvenes a desarrollar su potencial a través de la conexión con los caballos, aprendiendo sobre sí mismos y sus emociones en un entorno tranquilo y seguro.
+									</div>
+<!-- Bullets -->
+<div class="items-stretch self-stretch flex flex-col mt-8 pl-4 max-md:max-w-full">
+<div class="items-stretch flex justify-between gap-3 max-md:max-w-full" data-aos="fade-down" data-aos-delay="1300">
+<img class="aspect-square object-contain object-center w-7 fill-purple-100 overflow-hidden shrink-0 max-w-full" loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/daf93b8072e4e929162239b52dc8b12696d3f1e0911f1e574f372c99b5cb9f53?apiKey=6b5c83656f3e4a62a08161b0635627a3&amp;"/>
+<div class="text-gray-700 text-md md:text-lg leading-7 grow shrink basis-auto max-md:max-w-full">
+<span class="font-extrabold">Crecimiento Personal:</span> Estimula la autoestima y la confianza en un espacio de apoyo.
+										</div>
+</div>
+<div class="items-stretch flex justify-between gap-3 mt-5 max-md:max-w-full" data-aos="fade-down" data-aos-delay="1600">
+<img class="aspect-square object-contain object-center w-7 fill-purple-100 overflow-hidden shrink-0 max-w-full" loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/daf93b8072e4e929162239b52dc8b12696d3f1e0911f1e574f372c99b5cb9f53?apiKey=6b5c83656f3e4a62a08161b0635627a3&amp;"/>
+<div class="text-gray-700 text-md md:text-lg leading-7 grow shrink basis-auto max-md:max-w-full">
+<span class="font-extrabold">Educación Emocional:</span> Enseña habilidades de vida y manejo emocional de manera práctica y divertida.
+										</div>
+</div>
+<div class="items-stretch flex justify-between gap-3 mt-5 max-md:max-w-full" data-aos="fade-down" data-aos-delay="1900">
+<img class="aspect-square object-contain object-center w-7 fill-purple-100 overflow-hidden shrink-0 max-w-full" loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/daf93b8072e4e929162239b52dc8b12696d3f1e0911f1e574f372c99b5cb9f53?apiKey=6b5c83656f3e4a62a08161b0635627a3&amp;"/>
+<div class="text-gray-700 text-md md:text-lg leading-7 grow shrink basis-auto max-md:max-w-full">
+<span class="font-extrabold">Interacción y Socialización:</span> Promueve la amistad y el respeto mutuo entre los jovenes y los equinos.
+
+										</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Imagen Separador -->
+<section class="bg-white relative" id="imagen-separador-1" style="height: 500px;">
+<div class="absolute inset-0 bg-cover bg-center" id="separador-1" style="background-image: url('https://firebasestorage.googleapis.com/v0/b/equimonia-afa09.appspot.com/o/Formato_pg3.png?alt=media&amp;token=03dd7044-0e87-4140-8466-8c095f08df32&amp;_gl=1*7tlziz*_ga*MTk0NTkyMzI0Ni4xNjk2Mjc3MjA4*_ga_CW55HF8NVT*MTY5NzU5Mzc1Ny4yLjEuMTY5NzU5NTU0MC40OC4wLjA.');"></div>
 </section>
 <!-- Sección Testimonios -->
 <section class="bg-white py-10">
@@ -945,8 +1191,6 @@
 </main>
 </div>
 </section>
-<!-- Imagen Separador -->
-
 <!-- Sección Diferenciadores -->
 
 <!-- Sección Logos -->
@@ -1067,7 +1311,7 @@
 <i class="fab fa-linkedin-in"></i>
 </a>
 </div>
-<p class="mt-8 text-center text-base text-gray-400" id="footer-company">©2023 Equimonía. Todos los derechos reservados</p>
+<p class="mt-8 text-center text-base text-gray-400" id="footer-company">Equimonía ©2024. Todos los derechos reservados.</p>
 </div>
 </footer>
 <!--Función de Carrusel-->
@@ -1153,6 +1397,38 @@
 			updateSlides();
 		});
 		});
+
+	</script>
+<script>
+		// Asegúrate de obtener los elementos del DOM
+		var modal = document.getElementById("modal");
+		var modalVideo = document.getElementById("modal-video");
+
+		// Cierra el modal si se hace clic en el fondo (pero no en el video)
+		modal.addEventListener('click', function(event) {
+			if (event.target === modal) {
+				closeModal();
+			}
+		});
+
+		// Evita que el evento de clic se propague al fondo cuando se hace clic en el video
+		modalVideo.addEventListener('click', function(event) {
+			event.stopPropagation();
+		});
+
+		// Función para mostrar el modal
+		function showModal(src) {
+			modal.classList.remove('hidden');
+			modalVideo.src = src;
+			modalVideo.play();
+		}
+
+		// Función para cerrar el modal
+		function closeModal() {
+			modal.classList.add('hidden');
+			modalVideo.pause();
+			modalVideo.src = '';
+		}
 
 	</script>
 <!-- Sección Call To Action V1 -->
